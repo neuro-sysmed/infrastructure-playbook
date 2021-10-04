@@ -6,7 +6,7 @@
       - python3
       - git
       - jq
-      - nfs-utils
+      - nfs-common
       - vim 
       - libcgroup
       - libcgroup-tools
