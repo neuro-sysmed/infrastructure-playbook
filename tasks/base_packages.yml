@@ -35,7 +35,7 @@
 
     - name: Install microsoft packages
       include_tasks:
-        name: microsoft_packages.yml
+        file: microsoft_packages.yml
 
     - name: check if telegram executable is present
       shell: "which /usr/local/bin/telegram"
