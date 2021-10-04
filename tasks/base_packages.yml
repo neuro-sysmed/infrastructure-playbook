@@ -55,6 +55,11 @@
         extra_opts: 
           - --strip-components=1 
 
+    - name: check if modules executable is present
+      shell: "which /usr/local/bin/modules"
+      register: modules_bin
+      ignore_errors: true
+
     - name: build and install modules 5.0.0
       ansible.builtin.shell:  |
         curl -Lo /tmp/modules.tgz https://github.com/cea-hpc/modules/releases/download/v5.0.0/modules-5.0.0.tar.gz
@@ -65,6 +70,7 @@
         make  
         make install  
         rm -rf /tmp/modules*
+      when: modules_bin.rc != 0
 
 
 
