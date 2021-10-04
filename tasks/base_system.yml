@@ -1,12 +1,9 @@
 ---
-- name: enable epel
-  package:
-    name: epel-release
 
 - name: Install Dependencies
   package:
     name:
-      - python38
+      - python3
       - git
       - jq
       - nfs-utils

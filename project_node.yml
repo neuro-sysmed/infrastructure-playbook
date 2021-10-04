@@ -1,5 +1,8 @@
 
 - hosts: all
+
+  hosts: localhost
+  connection: local  
   become: true
 
   vars_files:
@@ -26,5 +29,5 @@
   roles:
     - geerlingguy.java
     - dj-wasabi.telegraf
-    - neuromics.linux-vm
+#    - neuro-sysmed.linux-vm
 
