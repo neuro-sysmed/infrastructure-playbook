@@ -9,7 +9,6 @@
       - nfs-common
       - vim 
       - cgroup-tools
-      - cgroup
       - munge
       - singularity
 
