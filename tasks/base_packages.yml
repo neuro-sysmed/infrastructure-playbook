@@ -72,7 +72,7 @@
         mkdir -p /tmp/modules
         tar zxvf /tmp/modules.tgz --strip 1 -C /tmp/modules 
         cd /tmp/modules
-        ./configure --prefix=/usr/local/  
+        ./configure 
         make  
         make install  
         rm -rf /tmp/modules*
