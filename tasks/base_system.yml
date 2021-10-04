@@ -20,7 +20,7 @@
 #    content: 'PATH=$PATH:/cluster/bin/'
 
 - name: update system
-  yum:
+  apt:
     name: '*'
     state: latest
 
