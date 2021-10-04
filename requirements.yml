@@ -15,8 +15,8 @@ roles:
     version: 1.14.1
   - src: https://github.com/dj-wasabi/ansible-telegraf
     name: dj-wasabi.telegraf
-  - src: https://github.com/neuromics/ansible-role-linux-vm.git
-    name: neuromics.linux-vm
+  - src: https://github.com/neuro-sysmed/ansible-role-linux-vm.git
+    name: neuro-sysmed.linux-vm
 
 collections:
 - name: community.general

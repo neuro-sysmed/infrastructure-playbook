@@ -1,0 +1,39 @@
+[alias]
+	st = status -s
+	ci = commit
+	co = checkout
+	cl = clone
+	br = branch -a
+	mdiff = diff --name-status --diff-filter M master
+	minor = commit -m 'minor changes'
+	cleanup = commit -m 'cleanup'
+	typo = commit -m 'typo fixes'
+	bug = commit -m 'bug fixes'
+	cosmetic = commit -m 'cosmetic changes'
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+	tags = tag -l
+	remotes = remote -v
+	amend = commit --amend --reuse-message=HEAD
+	purge = "!git branch --merged | grep -v '\\*' | grep -v master | xargs -n 1 git branch -d"
+[user]
+	name = brugger
+	email = kim.brugger@uib.no
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	mdiff = diff --name-status --diff-filter M master
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[color "status"]
+        added     = green bold
+    	changed   = yellow bold
+    	untracked = red bold
+[core]
+	excludesfile = ~/.gitignore
+[diff]
+	tool = meld
+

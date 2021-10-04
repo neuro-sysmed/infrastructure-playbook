@@ -1,0 +1,77 @@
+---
+# tasks file for ansible-role-ehos
+- name: Install and cofigure standard linux vm
+
+  block:
+
+    - name: install packages
+      package:
+        name:
+        - python38
+        - git
+        - jq
+        - nfs-utils
+        - vim 
+        - libcgroup
+        - libcgroup-tools
+        - singularity
+        - bzip2
+        - tmux
+        - samba-client 
+        - samba-common 
+        - cifs-utils
+
+     - name: Disable password login
+       lineinfile:
+          dest: /etc/ssh/sshd_config
+          state: present
+          regexp: ^PasswordAuthentication
+          line: PasswordAuthentication yes
+
+    - name: restart sshd
+      systemd:
+        name: sshd
+        enabled: true
+        state: restarted
+
+    - name: copy gitconfig
+      become: false
+      copy:
+        src: templates/gitconfig
+        dest: ~/.gitconfig
+
+    - name: copy gitignore
+      become: false
+      copy:
+        src: templates/gitignore
+        dest: ~/.gitignore
+
+    - name: copy vimrc
+      become: false
+      copy:
+        src: templates/vimrc
+        dest: ~/.vimrc
+
+    - name: copy Xmodmap
+      become: false
+      copy:
+        src: templates/Xmodmap
+        dest: ~/.Xmodmap
+
+    - name: copy bash_aliases
+      become: false
+      copy:
+        src: templates/bash_aliases
+        dest: ~/.bash_aliases
+
+    - name: copy bashrc
+      become: false
+      copy:
+        src: templates/bashrc
+        dest: ~/.bashrc
+
+    - name: install azure-cli
+      import_tasks: azure_cli.yml
+
+    - name: install blobfuse
+      import_tasks: blobfuse.yml

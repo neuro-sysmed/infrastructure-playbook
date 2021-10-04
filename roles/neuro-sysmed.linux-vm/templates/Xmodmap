@@ -1,0 +1,39 @@
+!
+! Use xev to get key codes!
+!
+! run it: xmodmap ~/.Xmodmap 
+
+
+! Remove the functionality of CAPS LOCK (hurray).
+!remove Lock    = Caps_Lock
+!clear Lock
+
+!
+! Rename Alt as Meta --- Motif seems to need this
+!  says: thorinn 1994.07.26
+!keysym Alt_L = Meta_L Alt_L
+!keysym Meta_R = Mode_switch Meta_R
+!
+! Add Latin-1 Danish characters at the ISO 646 positions
+
+!keycode 108 = Multi_key
+
+keycode  26 = e E ae AE
+keycode  32 = o O oslash Ooblique
+keycode  38 = a A aring Aring
+keycode  30 = u U udiaeresis Udiaeresis
+
+!  mod5+(u) = 
+
+!
+! Make the right Control key into a Mode_switch
+!remove control = Control_R
+!keysym Control_R = Mode_switch
+!add mod5 = Mode_switch
+!add mod5 = Scroll_Lock
+
+
+!clear Mode_switch 
+
+keycode 108 = Mode_switch
+!add mod5 = Mode_switch

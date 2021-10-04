@@ -1,0 +1,13 @@
+---
+- name: Add microsoft prod repo
+  yum_repository:
+    name: packages-microsoft-com-prod
+    description: packages-microsoft-com-prod
+    baseurl: https://packages.microsoft.com/rhel/8/prod
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: install blobfuse
+  package:
+    name:
+      - blobfuse

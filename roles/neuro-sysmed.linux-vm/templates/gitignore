@@ -1,0 +1,7 @@
+.ssh/known_hosts
+.idea
+venv/
+.gitignore
+*~
+.vscode
+vault_password
