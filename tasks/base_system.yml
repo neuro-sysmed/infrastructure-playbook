@@ -1,0 +1,105 @@
+---
+- name: enable epel
+  package:
+    name: epel-release
+
+- name: Install Dependencies
+  package:
+    name:
+      - python38
+      - git
+      - jq
+      - nfs-utils
+      - vim 
+      - libcgroup
+      - libcgroup-tools
+      - munge
+      - singularity
+
+
+#- name: Add another bin dir to system-wide $PATH.
+#  copy:
+#    dest: /etc/profile.d/custom-path.sh
+#    content: 'PATH=$PATH:/cluster/bin/'
+
+- name: update system
+  yum:
+    name: '*'
+    state: latest
+
+- name: nfs /usr/local
+  file:
+    path: /usr/local
+    state: directory
+    owner: root
+    group: sysadmin
+
+- name: nfs /data
+  file:
+    path: /data/
+    state: directory
+    owner: root
+    group: root
+
+- name: add munge key
+  copy:
+    dest: "/etc/munge/munge.key"
+    content: "{{munge_key}}"
+    owner: munge
+    group: munge
+    mode: 0600
+
+- name: ensure munge is running
+  systemd:
+    name: munge
+    enabled: true
+    state: started
+
+- name: Mount data NFS volume (cheap)
+  ansible.posix.mount:
+    src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
+    path: /data
+    opts: sec=sys,vers=3,nolock,proto=tcp
+    state: mounted
+    fstype: nfs
+  when: False
+
+
+- name: Mount data NFS volume
+  ansible.posix.mount:
+    src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
+    path: /data
+    opts: sec=sys,vers=3,nolock,proto=tcp
+    state: mounted
+    fstype: nfs
+  when: True
+
+
+- name: Mount /usr/local/ NFS volume
+  ansible.posix.mount:
+    src: clusterresources.file.core.windows.net:/clusterresources/local
+    path: /usr/local/
+    opts: rw,vers=4,minorversion=1,sec=sys
+    state: mounted
+    fstype: nfs
+
+- name: copy crun into /usr/local
+  template:
+    src: templates/system/crun.j2
+    dest: /usr/local/bin/crun
+    owner: root
+    mode: 0755
+
+- name: update pip
+#  become_user: "{{ecc_user}}"
+  pip: 
+    name: pip
+    executable: /usr/local/bin/pip3.8
+    extra_args: --upgrade
+
+- name: pip install wheel
+#  become_user: "{{ecc_user}}"
+  pip: 
+    name: wheel
+    executable: /usr/local/bin/pip3.8
+    extra_args: --upgrade

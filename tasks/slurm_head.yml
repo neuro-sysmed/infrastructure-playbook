@@ -1,0 +1,69 @@
+---
+- name: powertools!
+  command: dnf config-manager --enable powertools
+  args:
+    warn: false
+
+- name: install slurmctld and slurmdbd
+  package:
+    name:
+      - slurm-slurmctld
+      - slurm-slurmdbd
+      - platform-python-devel
+      - mariadb 
+      - mariadb-server
+
+- name: slurm lib dir
+  file:
+    path: /var/lib/slurm/
+    state: directory
+    owner: slurm
+    group: slurm
+
+- name: slurm log
+  file:
+    path: /var/log/slurm
+    state: directory
+    owner: slurm
+    group: slurm
+
+- name: start mariadb
+  systemd:
+    name: mariadb
+    enabled: true
+    state: started
+
+- name: copy slurm conf
+  template: 
+    src: files/slurm/slurm.conf
+    dest: /etc/slurm/slurm.conf
+    mode: 0644
+    owner: slurm
+    group: slurm
+    backup: yes
+
+- name: copy slurmdbd conf
+  template: 
+    src: files/slurm/slurmdbd.conf
+    dest: /etc/slurm/slurmdbd.conf
+    mode: 0600
+    owner: slurm
+    group: slurm
+    backup: yes
+
+- name: start slurmdbd
+  systemd:
+    name: slurmdbd
+    enabled: true
+    state: restarted
+
+- name: start slurmctld
+  systemd:
+    name: slurmctld
+    enabled: true
+    state: restarted
+
+- name: add sysadmin as admin/root
+  command:
+    cmd: sacctmgr -i add user sysadmin AdminLevel=Admin Account=root
+

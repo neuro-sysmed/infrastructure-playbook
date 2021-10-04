@@ -1,0 +1,88 @@
+head_node: ecc-head
+
+
+system_groups:
+  - { name: slurm, gid: 1025 }
+
+system_users:
+  - {
+      name: slurm,
+      uid: 1025,
+      group: slurm,
+      shell: /sbin/nologin,
+      create_home: no,
+      group_names: ["galaxyserver", "slurm"],
+    }
+  - {
+      name: brugger,
+      uid: 1026,
+      group: users,
+      shell: /bin/bash,
+      create_home: yes,
+      group_names: ["wheel"],
+    }
+
+
+munge_key: 15dd2f4e7cb41a49b065db2341e7342f
+
+
+mysql_databases: 
+  - name: slurm_acct
+  - name: cromwell
+mysql_users: 
+  - name: slurm
+    host: "localhost"
+    password: slurm
+    priv: "slurm_acct.*:ALL"
+  - name: cromwell
+    host: localhost
+    password: cromwell
+    priv: "cromwell.*:ALL"
+
+
+nsm_tools_version: 0.3.0
+
+cluster_root: /usr/local/
+
+ecc_user: sysadmin
+
+nsm_analysis_root: "{{cluster_root}}/lib/nsm-analysis"
+nsm_analysis_user: sysadmin
+
+ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"
+
+
+#influxdb_host: "{{ headnode_hostname }}:8086"
+influx_username: ecc
+influx_password: ecc_s3cr3t
+influx_database: ecc
+
+# Install the latest version of Telegraf
+telegraf_agent_package_state: latest
+
+telegraf_agent_hostname: "{{ inventory_hostname }}"
+telegraf_agent_interval: "60" # seconds
+
+telegraf_agent_output:
+  - type: influxdb
+    config:
+      - urls = [ "http://{{ head_node }}:8086/" ]
+      - database = "{{ influx_database }}"
+      - username = "{{ influx_username }}"
+      - password = "{{ influx_password }}"
+
+#example config, needs to be determined later on
+telegraf_plugins_default:
+  - plugin: cpu
+    config:
+      - percpu = false
+  - plugin: disk
+  - plugin: kernel
+  - plugin: processes
+  - plugin: io
+  - plugin: mem
+  - plugin: system
+  - plugin: swap
+  - plugin: net
+  - plugin: netstat
+  - plugin: chrony

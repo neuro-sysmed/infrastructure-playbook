@@ -1,0 +1,61 @@
+- name: "RedHat | Add yum repository"
+  yum_repository:
+    name: influxdb
+    description: InfluxDB Repository - RHEL $releasever
+    baseurl: https://repos.influxdata.com/rhel/$releasever/$basearch/stable
+    gpgcheck: 1
+    enabled: 1
+    gpgkey: https://repos.influxdata.com/influxdb.key
+
+
+- name: Grafana yum repo
+  yum_repository:
+    name: grafana
+    description: grafana Repository - RHEL $releasever
+    baseurl: https://packages.grafana.com/oss/rpm
+    repo_gpgcheck: 1
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://packages.grafana.com/gpg.key
+
+- name: install influxdb + grafana
+  package:
+    name: 
+      - influxdb
+      - grafana
+
+
+#- name: influx config
+#  template:
+#    src: templates/influxdb/influxdb.conf.j2
+#    dest: /etc/influxdb/influxdb.conf
+#    owner: root
+
+- name: start influxdb
+  service:
+    name: influxdb
+    state: restarted
+    
+- name: install python-influxdb
+  pip: 
+    name: influxdb
+    executable: pip-3.8
+
+
+
+
+- name: Create a user on localhost using default login credentials
+  community.general.influxdb_user:
+    user_name: "{{influx_username}}"
+    user_password: "{{influx_password}}"
+
+- name: Create influx database
+  community.general.influxdb_database:
+      hostname: "{{influx_host | default ('localhost')}}"
+      database_name: "{{influx_database}}"
+
+    
+- name: start grafana
+  service:
+    name: grafana-server
+    state: restarted

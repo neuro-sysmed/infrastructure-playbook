@@ -1,0 +1,22 @@
+## ! Managed by ansible, do not alter by hand! 
+
+[meta]
+  # Where the metadata/raft database is stored
+  dir = "/var/lib/influxdb/meta"
+
+  # Automatically create a default retention policy when creating a database.
+  retention-autocreate = true
+
+[data]
+  # The directory where the TSM storage engine stores TSM files.
+  dir = "/var/lib/influxdb/data"
+
+  # The directory where the TSM storage engine stores WAL files.
+  wal-dir = "/var/lib/influxdb/wal"
+
+[http]
+
+  # The bind address used by the HTTP service.
+  bind-address = {{influxdb_host | default ':8086'}}
+
+  

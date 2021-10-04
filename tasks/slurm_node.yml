@@ -1,0 +1,33 @@
+- name: powertools!
+  command: dnf config-manager --enable powertools
+  args:
+    warn: false
+
+- name: install slurmd
+  package:
+    name:
+      - slurm-slurmd
+      - platform-python-devel
+
+- name: slurm log
+  file:
+    path: /var/log/slurm
+    state: directory
+    owner: slurm
+    group: slurm
+
+
+- name: copy slurm conf
+  template: 
+    src: files/slurm/slurm.conf
+    dest: /etc/slurm/slurm.conf
+    mode: 0644
+    owner: slurm
+    group: slurm
+    backup: yes
+
+- name: start slurmd
+  systemd:
+    name: slurmd
+    enabled: true
+    state: restarted

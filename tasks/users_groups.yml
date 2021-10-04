@@ -1,0 +1,17 @@
+---
+- name: Create system groups
+  become: true
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+  with_items: "{{ system_groups }}"
+
+
+- name: Create system users
+  include: tasks/_system_users.yml user={{item}}
+#  with_items: "{{ system_users }}"
+  loop: "{{ system_users }}"
+
+
+
+

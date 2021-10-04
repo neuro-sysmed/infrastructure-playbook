@@ -1,0 +1,30 @@
+
+- hosts: all
+  become: true
+
+  vars_files:
+   - group_vars/system.yml
+   - secret_group_vars/system.vault    
+
+  tasks:
+    - name: Install packages
+      include: tasks/base_system.yml
+      tags: 'basesystem'
+    - name: Create users and groups
+      include: tasks/users_groups.yml
+      tags: 'users'
+    - name: Install influxdb and grafana
+      include: tasks/influxdb.yml
+      tags: 'influxdb'
+
+
+  post_tasks:
+    - name: azure bits
+      include: tasks/azure_cli.yml
+      tags: 'azure'
+
+  roles:
+    - geerlingguy.java
+    - dj-wasabi.telegraf
+    - neuromics.linux-vm
+

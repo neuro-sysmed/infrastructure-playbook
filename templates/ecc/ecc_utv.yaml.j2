@@ -1,0 +1,26 @@
+azure:
+    subscription_id: {{subscription_id}}
+
+ecc:
+    log: ecc.log
+    nodes_max: 10
+    nodes_min: 0
+    nodes_spare: 0
+    sleep: 30
+    name_template: "ecc-node-{}"
+
+    image: GOLD CentOS 7
+    ansible_dir: {{ecc_playbook_root }}
+    ansible_cmd: ./venv/bin/ansible-playbook -i /usr/local/bin/ecc_nodes.py ecc_live.yml
+
+
+
+    #azure variables
+    compute_group: FOR-NEURO-SYSMED-UTV-COMPUTE
+    network_group: FOR-NEURO-SYSMED-UTV-NETWORK
+    virtual_network: FOR-NEURO-SYSMED-UTV-VNET
+    virtual_subnet:  WorkloadsSubnet
+    vm_size: Standard_D4as_v4
+    admin_username: {{ecc_user}}
+    admin_password: {{ecc_user_password}}
+    ssh_key: "{{ssh_key}}"

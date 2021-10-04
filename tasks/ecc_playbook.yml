@@ -1,0 +1,23 @@
+- name: Git checkout of ecc-playbook 
+  git:
+    repo: 'https://github.com/neuromics/ecc-playbook'
+    dest: "{{ ecc_playbook_root }}"
+
+- name: create venv in {{ ecc_playbook_root }}
+  command:
+    chdir: "{{  ecc_playbook_root }}"
+    cmd: python3 -m venv venv
+    creates: "{{  ecc_playbook_root }}/venv"
+
+- name: Install specified python requirements for ecc-playbook
+  pip:
+    requirements: "{{  ecc_playbook_root }}/requirements.txt"
+    virtualenv: "{{  ecc_playbook_root }}/venv"
+
+- name: Install specified ansible requirements
+  command: "{{  ecc_playbook_root }}/venv"
+  command: ./venv/bin/ansible-galaxy install -p roles -r requirements.yml
+  become: yes
+  become_user: "{{ecc_user}}"
+  args:
+    chdir: "{{ ecc_playbook_root }}"

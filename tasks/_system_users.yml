@@ -1,0 +1,19 @@
+---
+- name: Create system users
+  block:
+#    - debug:
+#        msg: "Adding {{user.name}} to {{ inventory_hostname }}"
+#        msg: "Adding {{user.name}} to {{ inventory_hostname }} ]]  {{user.group_names}} / {{group_names}} --> {{user.group_names | intersect(group_names)|length }}"
+
+    - name: Add {{user.name }} user to hosts
+      become: true
+      user:
+        name: "{{ user.name }}"
+        uid: "{{ user.uid }}"
+        shell: "{{ user.shell }}"
+        group: "{{ user.group }}"
+        groups: "{{ user.groups | default('') }}"
+        create_home: "{{ user.create_home }}"
+
+
+

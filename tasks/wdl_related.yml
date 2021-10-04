@@ -1,0 +1,62 @@
+
+- name: install cromwell-utils
+  pip:
+    name: git+https://www.github.com/neuromics/cromwell-utils.git
+    extra_args: --prefix=/usr/local/ 
+
+- name: make dir for nsm-analysis
+  file:
+    path: "{{ nsm_analysis_root }}"
+    owner: "{{nsm_analysis_user}}"
+    state: directory
+
+- name: Git checkout of nsm-analysis
+  git:
+    repo: https://github.com/neuromics/nsm-analysis.git
+    dest: "{{ nsm_analysis_root }}"
+    force: yes
+
+- name: ensure jar dir exists
+  file:
+    path: "{{cluster_root}}jars/"
+    state: directory
+    
+- name: download cromwell-jar
+  get_url: 
+    url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
+    dest: "{{cluster_root}}jars/"
+    mode: '0644'
+
+- name: download womtool-jar
+  get_url: 
+    url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
+    dest: "{{cluster_root}}jars/"
+    mode: '0644'
+
+#- name: make imports paths absolute for workflows and utils
+#  command: 
+#    chdir: "{{  nsm_analysis_root }}"
+#    cmd: /usr/local/bin/cromwell-cli utils patch-workflows
+
+- name: make imports paths absolute version.json file in versions.wdl
+  command: 
+    chdir: "{{  nsm_analysis_root }}"
+    cmd: /usr/local/bin/cromwell-cli utils patch-versionfile
+
+
+- name: make nsm-analysis.zip file
+  command: 
+    chdir: "{{  nsm_analysis_root }}"
+    cmd: /usr/local/bin/cromwell-cli utils zip
+
+
+- name: ensure images dir exists
+  file:
+    path: "{{cluster_root}}images/"
+    state: directory
+
+- name: (re)build nsm-tools image, overwrites to ensure right version
+  command:
+    chdir: "{{cluster_root}}/images"
+    cmd: singularity build -F nsm-tools.sif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
+    
