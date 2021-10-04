@@ -8,8 +8,8 @@
       - jq
       - nfs-common
       - vim 
-      - libcgroup
-      - libcgroup-tools
+      - cgroup-tools
+      - cgroup
       - munge
       - singularity
 
