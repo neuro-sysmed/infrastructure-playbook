@@ -10,9 +10,14 @@
 #   - secret_group_vars/system.vault    
 
   tasks:
+    - name: add repos
+      include: tasks/repos.yml
+      tags: repos
+
     - name: Install packages
-      include: tasks/base_system.yml
-      tags: 'basesystem'
+      include: tasks/base_packages.yml
+      tags: 'base_packages'
+
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'

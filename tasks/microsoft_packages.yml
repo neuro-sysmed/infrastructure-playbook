@@ -1,0 +1,10 @@
+- name: install microsoft stuff
+
+  block:
+
+
+    - name: install packages
+      package:
+        name:
+        - code
+        - azure-cli
