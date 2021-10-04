@@ -34,7 +34,7 @@
 
 
     - name: Install microsoft packages
-      include:
+      include_tasks:
         name: microsoft_packages.yml
 
     - name: check if telegram executable is present
