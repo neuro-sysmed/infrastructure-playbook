@@ -24,6 +24,19 @@
       include: tasks/influxdb.yml
       tags: 'influxdb'
 
+    - name: configure autofs
+      include: tasks/autofs.yml
+      loop: "{{ storage | dict2items }}"
+      loop_control:
+        loop_var: group
+
+    - name: restart autofs
+      service:
+        name: autofs
+        enabled: yes
+        state: restarted
+
+
   roles:
     - geerlingguy.java
     - dj-wasabi.telegraf

@@ -14,7 +14,7 @@ system_users:
       group_names: ["galaxyserver", "slurm"],
     }
   - {
-      name: brugger,
+      name: kbr103,
       uid: 1026,
       group: users,
       shell: /bin/bash,
@@ -86,3 +86,12 @@ telegraf_plugins_default:
   - plugin: net
   - plugin: netstat
   - plugin: chrony
+
+storage:
+  neuromics:
+  - ppmi
+  - natpark
+  - parkome1
+  - parkome2
+  bindorf:
+  - polg
