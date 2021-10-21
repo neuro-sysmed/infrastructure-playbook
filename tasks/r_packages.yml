@@ -1,0 +1,32 @@
+- name: install r packages
+
+    - name: Path for R-library
+      ansible.builtin.file:
+        dest: /usr/local/lib/R
+        owner: root
+        mode: 0755
+        state: dir
+
+    
+
+    - name: Install r package
+      ansible.builtin.shell:  |
+        R --vanilla <<EOF
+        install.packages('{{item}}', repos='http://cran.us.r-project.org', lib='/usr/local/lib/R')
+        q()
+        EOF
+      with: 'BiocManager'
+
+
+    - name: Install bioconductor package
+      ansible.builtin.shell:  |
+        R --vanilla <<EOF
+        BiocManager::install("minfi", lib='/usr/local/lib/R')
+        q()
+        EOF
+    with: 
+      - minfi
+      - missMethyl
+      - FlowSorted.Blood.450k
+      - limma
+      - DNAmArray
