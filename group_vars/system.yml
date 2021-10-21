@@ -2,24 +2,53 @@ head_node: ecc-head
 
 
 system_groups:
-  - { name: slurm, gid: 1025 }
+  - { name: slurm,     gid: 10000 }
+  - { name: nsm,       gid: 10001 }
+  - { name: data,      gid: 10002 }
+  - { name: neuromics, gid: 10003 }
+  - { name: bindorf,   gid: 10004 }
 
 system_users:
+
   - {
       name: slurm,
-      uid: 1025,
+      uid: 10000,
       group: slurm,
       shell: /sbin/nologin,
       create_home: no,
-      group_names: ["galaxyserver", "slurm"],
+      group_names: ["nsm", "slurm"],
     }
   - {
-      name: kbr103,
-      uid: 1026,
-      group: users,
+      name: brugger,
+      uid: 1010,
+      group: nsm,
       shell: /bin/bash,
       create_home: yes,
-      group_names: ["wheel"],
+      group_names: ["neuromics", 'wheel', 'admin'],
+    }
+  - {
+      name: melanie,
+      uid: 1011,
+      group: nsm,
+      shell: /bin/bash,
+      create_home: yes,
+      group_names: ["data", 'admin'],
+    }
+  - {
+      name: gon,
+      uid: 1011,
+      group: neuromics,
+      shell: /bin/bash,
+      create_home: yes,
+      group_names: [],
+    }
+  - {
+      name: lilah,
+      uid: 1011,
+      group: neuromics,
+      shell: /bin/bash,
+      create_home: yes,
+      group_names: [],
     }
 
 

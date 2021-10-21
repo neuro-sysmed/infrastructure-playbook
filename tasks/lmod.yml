@@ -1,0 +1,51 @@
+- name: install modules
+
+    - name: install enviroment module dependencies
+      package:
+        name:
+        - lua5.3
+        - liblua5.3-dev
+        - lua-posix
+        - tcl-dev
+        - bash
+        - make
+        - gcc
+        
+    - name: check if modules executable is present
+      shell: "module list"
+      register: lmod_bin
+      ignore_errors: true
+
+    - name: build and install modules 5.0.0
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/lmod.tgz https://github.com/TACC/Lmod/archive/refs/tags/8.5.19.tar.gz
+        mkdir -p /tmp/lmod
+        tar zxvf /tmp/lmod.tgz --strip 1 -C /tmp/lmod
+        cd /tmp/lmod
+        ./configure --prefix=/usr/local
+        make  
+        make install  
+        rm -rf /tmp/lmod*
+      when: lmod_bin.rc != 0
+
+    - name: copy modulepath file
+      ansible.builtin.file:
+        src: files/lmod/modulepath
+        dest: /usr/local/lmod/lmod/init/.modulespath
+        owner: root
+        mode: 0644
+
+    - name: link bash configfile
+      ansible.builtin.file:
+        src: ln -s /usr/local/lmod/lmod/init/profile
+        dest: /etc/profile.d/lmod.sh
+        state: link
+      when: modules_bin.rc != 0
+
+    - name: link csh configfile
+      ansible.builtin.file:
+        src: ln -s /usr/local/Modules/init/profile.csh 
+        dest: /etc/profile.d/lmod.csh
+        state: link
+      when: modules_bin.rc != 0
+
