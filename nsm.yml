@@ -6,7 +6,7 @@
 
   vars_files:
    - group_vars/system.yml
-#   - secret_group_vars/system.vault    
+   - secret_group_vars/system.vault    
 
 
   roles:
