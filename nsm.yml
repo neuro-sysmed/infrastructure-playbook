@@ -1,0 +1,48 @@
+- hosts: all
+
+  hosts: localhost
+  connection: local  
+  become: true
+
+  vars_files:
+   - group_vars/system.yml
+#   - secret_group_vars/system.vault    
+
+  tasks:
+    - name: add repos
+      include: tasks/repos.yml
+      tags: repos
+
+    - name: mount nfs points
+      include: tasks/nfs.yml
+      tags: "nfs"
+
+
+    - name: Install packages
+      include: tasks/base_packages.yml
+      tags: 'base_packages'
+
+    - name: Create users and groups
+      include: tasks/users_groups.yml
+      tags: 'users'
+
+    - name: configure autofs
+      include: tasks/autofs.yml
+      tags: autofs
+
+
+    - name: Install influxdb and grafana
+      include: tasks/influxdb.yml
+      tags: 'influxdb'
+
+    - name: setup slurm-client
+      include: tasks/slurm_client.yml
+      tags: slurm-client
+
+
+
+  roles:
+    - geerlingguy.mysql
+    - geerlingguy.java
+    - dj-wasabi.telegraf
+

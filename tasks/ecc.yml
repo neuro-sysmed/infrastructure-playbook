@@ -33,6 +33,7 @@
     path: "{{cluster_root}}etc/"
     state: directory
     group: "{{ecc_user}}"
+    mode: 0755
  
 
 - name: Deploy ecc utv config file, will keep local copy if exists!

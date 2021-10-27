@@ -40,5 +40,9 @@
     - name: Install lmod
       include_tasks:
         file: tasks/lmod.yml
+
+    - name: install singularity
+      include_tasks:
+        file: tasks/singularity.yml
       
         
