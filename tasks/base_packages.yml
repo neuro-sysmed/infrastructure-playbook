@@ -32,7 +32,7 @@
         - wget
         - cmake
         - python3-requests
-        - python3-is-python
+        - python-is-python3
 
 
     - name: Install microsoft packages
