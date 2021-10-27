@@ -33,7 +33,7 @@
 
     - name: copy modulepath file
       ansible.builtin.copy:
-        src: files/lmod/modulepath
+        src: files/lmod/modulespath
         dest: /usr/local/lmod/lmod/init/.modulespath
         owner: root
         mode: 0644

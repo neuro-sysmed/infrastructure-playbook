@@ -1,5 +1,14 @@
 - name: install r packages
 
+
+
+
+    - name: add r-lib file to /etc/profile.d
+      ansible.builtin.copy:
+        src: files/r/r_path.sh
+        dest: /etc/profile.d/r_path.sh
+        mode: 0755
+
     - name: Path for R-library
       ansible.builtin.file:
         dest: /usr/local/lib/R
