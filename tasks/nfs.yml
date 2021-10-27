@@ -18,13 +18,13 @@
     src: systemfileshare.blob.core.windows.net:/systemfileshare/local
     path: /usr/local
     opts: sec=sys,vers=3,nolock,proto=tcp
-    state: mounted
+    state: remounted
     fstype: nfs
 
 
 - name: mkdir /home/
   file:
-    path: /home
+    path: /home/nfs/
     state: directory
     owner: root
     group: root
@@ -33,9 +33,9 @@
 - name: Mount /home NFS volume 
   ansible.posix.mount:
     src: homesfileshare.file.core.windows.net:/homesfileshare/home1
-    path: /home/
+    path: /home/nfs/
     opts: vers=4,minorversion=1,sec=sys
-    state: mounted
+    state: remounted
     fstype: nfs
 
 
