@@ -31,6 +31,8 @@
         - curl
         - wget
         - cmake
+        - python3-requests
+        - python3-is-python
 
 
     - name: Install microsoft packages
