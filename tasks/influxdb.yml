@@ -20,7 +20,7 @@
 - name: install python-influxdb
   pip: 
     name: influxdb
-    executable: pip-3.8
+    executable: pip
 
 
 - name: Create a user on localhost using default login credentials
