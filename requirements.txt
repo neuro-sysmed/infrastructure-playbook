@@ -1,3 +1,5 @@
 ansible
-#cannot see local installed package!
+#cannot see local installed package as running in local env on localhost.
 PyMySQL
+requests
+influxdb
