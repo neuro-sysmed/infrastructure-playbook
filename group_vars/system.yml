@@ -36,7 +36,7 @@ system_users:
     }
   - {
       name: gon,
-      uid: 1011,
+      uid: 1012,
       group: neuromics,
       shell: /bin/bash,
       create_home: yes,
@@ -44,7 +44,7 @@ system_users:
     }
   - {
       name: lilah,
-      uid: 1011,
+      uid: 1013,
       group: neuromics,
       shell: /bin/bash,
       create_home: yes,
