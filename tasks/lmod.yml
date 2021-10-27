@@ -37,6 +37,7 @@
         dest: /usr/local/lmod/lmod/init/.modulespath
         owner: root
         mode: 0644
+        state: file
 
     - name: link bash configfile
       ansible.builtin.file:
