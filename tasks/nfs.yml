@@ -12,22 +12,33 @@
     owner: root
     group: sysadmin
 
+- name: unmount /usr/local NFS volume 
+  ansible.posix.mount:
+    path: /usr/local
+    state: unmounted
+
+
 
 - name: Mount /usr/local NFS volume 
   ansible.posix.mount:
     src: systemfileshare.blob.core.windows.net:/systemfileshare/local
     path: /usr/local
     opts: sec=sys,vers=3,nolock,proto=tcp
-    state: remounted
+    state: mounted
     fstype: nfs
 
 
-- name: mkdir /home/
+- name: mkdir /home/nfs/
   file:
     path: /home/nfs/
     state: directory
     owner: root
     group: root
+
+- name: unmount /home/nfs NFS volume 
+  ansible.posix.mount:
+    path: /home/nfs
+    state: unmounted
 
 
 - name: Mount /home NFS volume 
@@ -35,7 +46,7 @@
     src: homesfileshare.file.core.windows.net:/homesfileshare/home1
     path: /home/nfs/
     opts: vers=4,minorversion=1,sec=sys
-    state: remounted
+    state: mounted
     fstype: nfs
 
 
