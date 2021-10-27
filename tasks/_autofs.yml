@@ -1,6 +1,5 @@
 - name: configuring autofs for {{group['key']}}
 
-
   block:
 
     - name: mkdir /data
