@@ -8,7 +8,6 @@
         state: dir
 
     
-
     - name: Install r package
       ansible.builtin.shell:  |
         R --vanilla <<EOF

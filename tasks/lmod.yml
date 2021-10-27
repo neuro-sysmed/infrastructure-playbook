@@ -32,7 +32,7 @@
       when: lmod_bin.rc != 0
 
     - name: copy modulepath file
-      ansible.builtin.file:
+      ansible.builtin.copy:
         src: files/lmod/modulepath
         dest: /usr/local/lmod/lmod/init/.modulespath
         owner: root
