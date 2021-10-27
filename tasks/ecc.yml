@@ -35,20 +35,20 @@
     group: "{{ecc_user}}"
  
 
-- name: Deploy ecc config file, will keep local copy if exists!
+- name: Deploy ecc utv config file, will keep local copy if exists!
   template:
     src: templates/ecc/ecc_utv.yaml.j2
     dest: "{{cluster_root}}/etc/ecc_utv.yaml"
     owner: "{{ecc_user}}"
 
-- name: Deploy ecc config file, will keep local copy if exists!
+- name: Deploy ecc prod config file, will keep local copy if exists!
   template:
     src: templates/ecc/ecc_preprod.yaml.j2
     dest: "{{cluster_root}}/etc/ecc_preprod.yaml"
     owner: "{{ecc_user}}"
 
 
-- name: add ecc to /etc/environment
+- name: add ecc_conf to /etc/environment
   become_user: root
   lineinfile:
     dest: "/etc/environment"
