@@ -4,6 +4,11 @@
     - geerlingguy.java
     - dj-wasabi.telegraf
 
+  vars_files:
+   - group_vars/system.yml
+   - secret_group_vars/system.vault    
+
+
   tasks:
 
     # need to mount /usr/local before adding stuff to it.
