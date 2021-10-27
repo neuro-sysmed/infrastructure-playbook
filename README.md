@@ -1,13 +1,16 @@
 # infrastructure-playbook
 For the azure infrastructure
 
+
+## nsm vm
+
+Create in azure portal with a sysadmin user
+
+
 ```
 sudo apt-get update 
 sudo apt-get upgrade -y 
 sudo apt-get  install python3-venv python3-pip -y
-
-
-
 
 git clone https://github.com/neuro-sysmed/infrastructure-playbook
 cd infrastructure-playbook

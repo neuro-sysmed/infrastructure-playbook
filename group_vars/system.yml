@@ -81,10 +81,10 @@ nsm_analysis_user: sysadmin
 ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"
 
 
-#influxdb_host: "{{ headnode_hostname }}:8086"
-influx_username: ecc
-influx_password: ecc_s3cr3t
-influx_database: ecc
+influxdb_host: "nsm:8086"
+influx_username: nsm
+#influx_password: in secret_group_vars/system.vault
+influx_database: nsm
 
 # Install the latest version of Telegraf
 telegraf_agent_package_state: latest

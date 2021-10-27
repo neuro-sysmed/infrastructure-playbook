@@ -1,7 +1,10 @@
 ---
 - name: install go lang
   block:
-    
+
+
+
+
     - name: check if go executable is present
       shell: "which /usr/local/go/bin/go"
       register: go_bin
@@ -12,6 +15,14 @@
         url: https://golang.org/dl/go1.17.linux-amd64.tar.gz
         dest: /tmp/go.tgz
       when: go_bin.rc != 0
+
+
+    - name: ensure /usr/local/go is readable for all
+      ansible.builtin.file:
+        src: /usr/local/go
+        mode: 0755
+      when: go_bin.rc != 0
+
 
 
     - name: Extract go-lang into /usr/local/

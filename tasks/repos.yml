@@ -16,12 +16,12 @@
 
     - name: Add microsoft prod repo (blobfuse)
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod/ focal main
+        repo: deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod/ {{ansible_distribution_release}} main
         state: present
 
     - name: Azure-cli repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli focal main
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli {{ansible_distribution_release}} main
         state: present
 
     - name: Add google signing key
@@ -33,7 +33,6 @@
       ansible.builtin.apt_repository:
         repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
         state: present
-
 
     - name: Add docker signing key
       ansible.builtin.apt_key:
@@ -75,4 +74,25 @@
       ansible.builtin.apt_repository:
         repo: deb [arch=amd64] https://deb.nodesource.com/node_16.x {{ansible_distribution_release}} main
         state: present
+
+    - name: Add influx signing key
+      ansible.builtin.apt_key:
+        url: https://repos.influxdata.com/influxdb.key
+        state: present
+
+    - name: Add influx repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://repos.influxdata.com/ubuntu {{ansible_distribution_release}} stable
+        state: present
+
+    - name: Add grafana signing key
+      ansible.builtin.apt_key:
+        url: https://packages.grafana.com/gpg.key
+        state: present
+
+    - name: Add grafana  repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://packages.grafana.com/enterprise/deb stable main
+        state: present
+
 
