@@ -21,7 +21,8 @@
     - name: Install bioconductor package
       ansible.builtin.shell:  |
         R --vanilla <<EOF
-        BiocManager::install("minfi", lib='/usr/local/lib/R')
+        library(BiocManager)
+        BiocManager::install("{{item}}", lib='/usr/local/lib/R')
         q()
         EOF
     with: 
