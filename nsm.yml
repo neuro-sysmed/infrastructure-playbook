@@ -8,15 +8,6 @@
    - group_vars/system.yml
 #   - secret_group_vars/system.vault    
 
-  pre_tasks:
-    - name: add repos
-      include: tasks/repos.yml
-      tags: repos
-
-    - name: Install packages
-      include: tasks/base_packages.yml
-      tags: 'base_packages'
-
 
   roles:
     - geerlingguy.mysql
@@ -25,10 +16,19 @@
 
 
   tasks:
-
+    # need to mount /usr/local befor adding stuff to it.
     - name: mount nfs points
       include: tasks/nfs.yml
       tags: "nfs"
+
+    - name: add repos
+      include: tasks/repos.yml
+      tags: repos
+
+    - name: Install packages
+      include: tasks/base_packages.yml
+      tags: 'base_packages'
+
 
     - name: Create users and groups
       include: tasks/users_groups.yml
