@@ -14,12 +14,19 @@
         - make
         - gcc
         
-    - name: check if modules executable is present
-      shell: "module list"
-      register: lmod_bin
-      ignore_errors: true
+#    - name: check if modules executable is present
+#      shell: "module list"
+#      register: lmod_bin
+#      ignore_errors: true
 
-    - name: build and install modules 5.0.0
+
+    - name: Check that the lmod directoy exists
+      stat:
+        path: /usr/local/lmod/lmod/
+      register: lmod_dir
+  
+
+    - name: build and install modules 8.5.19
       ansible.builtin.shell:  |
         curl -Lo /tmp/lmod.tgz https://github.com/TACC/Lmod/archive/refs/tags/8.5.19.tar.gz
         mkdir -p /tmp/lmod
@@ -29,7 +36,7 @@
         make  
         make install  
         rm -rf /tmp/lmod*
-      when: lmod_bin.rc != 0
+      when: not lmod_dir.stat.exists
 
     - name: copy modulepath file
       ansible.builtin.copy:
@@ -43,12 +50,10 @@
         src: /usr/local/lmod/lmod/init/profile
         dest: /etc/profile.d/lmod.sh
         state: link
-      when: modules_bin.rc != 0
 
     - name: link csh configfile
       ansible.builtin.file:
         src: /usr/local/Modules/init/profile.csh 
         dest: /etc/profile.d/lmod.csh
         state: link
-      when: modules_bin.rc != 0
 
