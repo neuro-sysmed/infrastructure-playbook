@@ -39,6 +39,6 @@
 
     - name: Install lmod
       include_tasks:
-        file: lmod.yml
+        file: tasks/lmod.yml
       
         
