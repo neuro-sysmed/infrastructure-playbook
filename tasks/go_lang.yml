@@ -1,0 +1,29 @@
+---
+- name: install go lang
+  block:
+    
+    - name: check if go executable is present
+      shell: "which /usr/local/go/bin/go"
+      register: go_bin
+      ignore_errors: true
+
+    - name: download go version 1.17
+      get_url:
+        url: https://golang.org/dl/go1.17.linux-amd64.tar.gz
+        dest: /tmp/go.tgz
+      when: go_bin.rc != 0
+
+
+    - name: Extract go-lang into /usr/local/
+      ansible.builtin.unarchive:
+        src: /tmp/go.tgz
+        dest: /usr/local/
+      when: go_bin.rc != 0
+
+    - name: add file to /etc/profile.d with new go path 
+      copy:
+        src: files/system/99-gopath
+        dest: /etc/profile.d/99-gopath
+      when: go_bin.rc != 0
+        
+            

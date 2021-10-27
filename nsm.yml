@@ -17,13 +17,18 @@
       include: tasks/base_packages.yml
       tags: 'base_packages'
 
+
+  roles:
+    - geerlingguy.mysql
+    - geerlingguy.java
+    - dj-wasabi.telegraf
+
+
   tasks:
 
     - name: mount nfs points
       include: tasks/nfs.yml
       tags: "nfs"
-
-
 
     - name: Create users and groups
       include: tasks/users_groups.yml
@@ -55,11 +60,4 @@
       include: tasks/wdl_related.yml
       tags: 'wdl'
 
-
-
-
-  roles:
-    - geerlingguy.mysql
-    - geerlingguy.java
-    - dj-wasabi.telegraf
 

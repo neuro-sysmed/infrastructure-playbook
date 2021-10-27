@@ -42,8 +42,9 @@
       include_tasks:
         file: tasks/lmod.yml
 
-    - name: install singularity
+
+    - name: Install go
       include_tasks:
-        file: tasks/singularity.yml
-      
+        file: tasks/go_lang.yml
+
         
