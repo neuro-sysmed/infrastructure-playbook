@@ -6,7 +6,7 @@ system_groups:
   - { name: nsm,       gid: 10001 }
   - { name: data,      gid: 10002 }
   - { name: neuromics, gid: 10003 }
-  - { name: bindorf,   gid: 10004 }
+  - { name: bindoff,   gid: 10004 }
 
 system_users:
 
@@ -122,5 +122,5 @@ storage:
   - natpark
   - parkome1
   - parkome2
-  bindorf:
+  bindoff:
   - polg

@@ -1,7 +1,7 @@
 
 - name: install ecc
   pip:
-    executable: pip-3.8
+    executable: pip
     name: git+https://github.com/neuromics/ecc.git@azure
     extra_args: --prefix=/usr/local 
 
