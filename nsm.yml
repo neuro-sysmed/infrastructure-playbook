@@ -8,19 +8,22 @@
    - group_vars/system.yml
 #   - secret_group_vars/system.vault    
 
-  tasks:
+  pre_tasks:
     - name: add repos
       include: tasks/repos.yml
       tags: repos
+
+    - name: Install packages
+      include: tasks/base_packages.yml
+      tags: 'base_packages'
+
+  tasks:
 
     - name: mount nfs points
       include: tasks/nfs.yml
       tags: "nfs"
 
 
-    - name: Install packages
-      include: tasks/base_packages.yml
-      tags: 'base_packages'
 
     - name: Create users and groups
       include: tasks/users_groups.yml
@@ -35,9 +38,23 @@
       include: tasks/influxdb.yml
       tags: 'influxdb'
 
+
     - name: setup slurm-client
       include: tasks/slurm_client.yml
       tags: slurm-client
+
+    - name: install ecc bits
+      become: true
+      become_user: "{{ecc_user}}"
+      include: tasks/ecc.yml
+      tags: 'ecc'
+
+    - name: wdl bits
+      become: true
+      become_user: "{{ecc_user}}"
+      include: tasks/wdl_related.yml
+      tags: 'wdl'
+
 
 
 
