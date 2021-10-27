@@ -25,4 +25,19 @@ ansible-galaxy collection install -p roles -r requirements.yml
 
 ansible-playbook ecc.yml
 
+ln -s   /usr/local/etc/ecc_utv.yml /usr/local/etc/ecc.yml
+
+
 ```
+
+
+## Create some additional VMs
+
+```
+/usr/local/bin/ecc-cli add project ecc ecc-node
+# run playbooks to bootstrap the vms
+ansible-playbook project_vm.yml
+ansible-playbook slurm.yml
+
+```
+

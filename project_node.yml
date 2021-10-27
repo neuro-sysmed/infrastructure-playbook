@@ -6,7 +6,11 @@
 
   vars_files:
    - group_vars/system.yml
-#   - secret_group_vars/system.vault    
+   - secret_group_vars/system.vault    
+
+  roles:
+    - geerlingguy.java
+    - dj-wasabi.telegraf
 
   tasks:
     - name: add repos
@@ -35,7 +39,4 @@
       include: tasks/slurm_client.yml
       tags: slurm-client
 
-  roles:
-    - geerlingguy.java
-    - dj-wasabi.telegraf
 
