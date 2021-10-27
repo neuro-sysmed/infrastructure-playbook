@@ -1,0 +1,41 @@
+---
+
+- name: Install nfs-dependencies
+  package:
+    name:
+      - nfs-common
+
+- name: mkdir /usr/local
+  file:
+    path: /usr/local
+    state: directory
+    owner: root
+    group: sysadmin
+
+
+- name: Mount /usr/local NFS volume 
+  ansible.posix.mount:
+    src: systemfileshare.blob.core.windows.net:/systemfileshare/local
+    path: /usr/local
+    opts: sec=sys,vers=3,nolock,proto=tcp
+    state: mounted
+    fstype: nfs
+
+
+- name: mkdir /home/
+  file:
+    path: /home
+    state: directory
+    owner: root
+    group: root
+
+
+- name: Mount /home NFS volume 
+  ansible.posix.mount:
+    src: homesfileshare.file.core.windows.net:/homesfileshare/home1
+    path: /home/
+    opts: vers=4,minorversion=1,sec=sys
+    state: mounted
+    fstype: nfs
+
+

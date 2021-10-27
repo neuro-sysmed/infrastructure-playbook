@@ -1,4 +1,5 @@
-- name: install modules
+---
+  block : install lmod
 
     - name: install enviroment module dependencies
       package:

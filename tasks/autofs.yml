@@ -1,19 +1,18 @@
-- name: configuring autofs for {{group['key']}}
+---
 
-  block:
+  - name: install requirements
+    package:
+      name:
+        - autofs
 
-    - name: set group_name
-      set_fact:
-        group_name: "{{group['key']}}"
+  - name: configure autofs
+    include: tasks/autofs.yml
+    loop: "{{ storage | dict2items }}"
+    loop_control:
+      loop_var: group
 
-    - name: write /etc/auto.master.d/{{group_name}}.autofs file
-      template:
-        src: templates/autofs/project.autofs.j2
-        dest: /tmp/{{group_name}}.autofs
-
-    - name: write /etc/auto.{{group_name}} file
-      template:
-        src: templates/autofs/auto.project.j2
-        dest: /tmp/auto.{{group_name}}
-
-
+  - name: restart autofs
+    service:
+      name: autofs
+      enabled: yes
+      state: restarted

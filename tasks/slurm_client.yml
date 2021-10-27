@@ -1,0 +1,43 @@
+---
+  block: Install slurm-client
+
+  - name: Install slurm Dependencies
+    package:
+      name:
+        - slurm-client
+        - cgroup-tools
+        - munge
+
+
+  - name: add munge key
+    copy:
+      dest: "/etc/munge/munge.key"
+      content: "{{munge_key}}"
+      owner: munge
+      group: munge
+      mode: 0600
+
+  - name: ensure munge is running
+    systemd:
+      name: munge
+      enabled: true
+      state: started
+
+  - name: copy slurm conf
+    template: 
+      src: files/slurm/slurm.conf
+      dest: /etc/slurm/slurm.conf
+      mode: 0644
+      owner: slurm
+      group: slurm
+      backup: yes
+
+  - name: copy slurmdbd conf
+    template: 
+      src: files/slurm/slurmdbd.conf
+      dest: /etc/slurm/slurmdbd.conf
+      mode: 0600
+      owner: slurm
+      group: slurm
+      backup: yes
+

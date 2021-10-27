@@ -3,8 +3,9 @@
   block:
 
 
-    - name: install packages
+    - name: install microsoft packages
       package:
         name:
         - code
         - azure-cli
+        - blobfuse

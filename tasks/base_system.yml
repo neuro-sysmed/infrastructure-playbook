@@ -10,7 +10,6 @@
       - vim 
       - cgroup-tools
       - munge
-      - singularity
 
 
 #- name: Add another bin dir to system-wide $PATH.
