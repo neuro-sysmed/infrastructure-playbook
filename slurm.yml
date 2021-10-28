@@ -46,7 +46,7 @@
       tags: 'slurm'
 
 
-- hosts: node
+- hosts: slurmnode
   become: true
 
   vars_files:
