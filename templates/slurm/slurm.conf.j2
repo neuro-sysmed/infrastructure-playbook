@@ -18,13 +18,52 @@ SlurmUser=slurm
 StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
-# Nodes
-{% for i in slurm_nodes %}
+# SMALL
+{% if small is defined %}
+{% for i in small|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
-{% else %}
-NodeName=localhost State=UNKNOWN
 {% endfor %}
+PartitionName=small State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'small' ]|default([]) | join(',') }}
+{% else %}
+NodeName=ecc-small-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+PartitionName=small State=UP MaxTime=UNLIMITED Default=YES Nodes=ecc-small-0
+{% endif %}
 
-# Partition
-PartitionName=azure State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'node' ] | join(',') }}
+# MEDIUM
+{% if medium is defined %}
+{% for i in medium|default([]) %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
+{% endfor %}
+PartitionName=medium State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'medium' ]|default([]) | join(',') }}
+{% else %}
+NodeName=ecc-medium-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+PartitionName=medium State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-medium-0
+{% endif %}
+
+
+# LARGE
+{% if large is defined %}
+{% for i in large|default([]) %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
+{% endfor %}
+PartitionName=large State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'large' ]|default([]) | join(',') }}
+{% else %}
+NodeName=ecc-large-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+PartitionName=large State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-large-0
+{% endif %}
+
+
+# HUGE
+{% if huge is defined %}
+{% for i in huge|default([]) %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
+{% endfor %}
+PartitionName=huge State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'huge' ]|default([]) | join(',') }}
+{% else %}
+NodeName=ecc-huge-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+PartitionName=huge State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-huge-0
+{% endif %}

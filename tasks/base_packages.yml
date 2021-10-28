@@ -33,6 +33,7 @@
         - cmake
         - python3-requests
         - python-is-python3
+        - mysql-client
 
 
     - name: Install microsoft packages

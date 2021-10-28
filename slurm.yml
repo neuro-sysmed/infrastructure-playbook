@@ -35,6 +35,11 @@
       tags: autofs
 
 
+    - name: configure slurm basics
+      include: tasks/slurm_client.yml
+      tags: slurm-client
+
+
 
 - hosts: slurmhead
   become: true
@@ -45,7 +50,7 @@
   tasks:
     - name: install slurm head
       include: tasks/slurm_head.yml
-      tags: 'slurm'
+      tags: 'slurm-head'
 
 
 - hosts: slurmnode
@@ -57,5 +62,5 @@
   tasks:
     - name: install slurmd
       include: tasks/slurm_node.yml
-      tags: 'slurm'
+      tags: 'slurm-node'
 
