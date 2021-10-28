@@ -1,4 +1,5 @@
 - hosts: slurmhead, slurmnode
+  become: true
 
   roles:
     - geerlingguy.java

@@ -39,7 +39,7 @@ az login
 
 
 /usr/local/bin/ecc-cli add project ecc-head-ubuntu ecc-node-ubuntu projectvm
-# run playbooks to bootstrap the vms
+# run playbooks to bootstrap the vms, might crash if apt is doing auto update(s)
 ansible-playbook project_vm.yml
 ansible-playbook slurm.yml
 

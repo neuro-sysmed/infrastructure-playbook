@@ -1,8 +1,4 @@
 ---
-- name: powertools!
-  command: dnf config-manager --enable powertools
-  args:
-    warn: false
 
 - name: install slurmctld and slurmdbd
   package:
