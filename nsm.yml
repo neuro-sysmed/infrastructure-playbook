@@ -16,7 +16,7 @@
 
 
   tasks:
-    # need to mount /usr/local befor adding stuff to it.
+    # need to mount /usr/local before adding stuff to it.
     - name: mount nfs points
       include: tasks/nfs.yml
       tags: "nfs"
@@ -42,6 +42,10 @@
     - name: Install influxdb and grafana
       include: tasks/influxdb.yml
       tags: 'influxdb'
+
+    - name: install rabbitmq
+      include: tasks/rabbitmq.yml
+      tags: rabbitmq
 
 
     - name: setup slurm-client

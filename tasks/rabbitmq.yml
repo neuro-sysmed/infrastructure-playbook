@@ -1,0 +1,16 @@
+---
+
+- name: install rabbitmq server
+
+  block:
+
+    - name: install rabbitmq-server packages
+      package:
+        name:
+        - rabbitmq-server
+
+    - name: start rabbitmq
+      service:
+        name: rabbitmq-server
+        state: restarted
+
