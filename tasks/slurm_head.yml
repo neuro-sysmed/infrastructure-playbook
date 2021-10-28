@@ -32,7 +32,7 @@
 - name: copy slurm conf
   template: 
     src: files/slurm/slurm.conf
-    dest: /etc/slurm/slurm.conf
+    dest: /etc/slurm-llnl/slurm.conf
     mode: 0644
     owner: slurm
     group: slurm
@@ -41,7 +41,7 @@
 - name: copy slurmdbd conf
   template: 
     src: files/slurm/slurmdbd.conf
-    dest: /etc/slurm/slurmdbd.conf
+    dest: /etc/slurm-llnl/slurmdbd.conf
     mode: 0600
     owner: slurm
     group: slurm
