@@ -53,8 +53,6 @@
       tags: slurm-client
 
     - name: install ecc bits
-#      become: true
-#      become_user: "{{ecc_user}}"
       include: tasks/ecc.yml
       tags: 'ecc'
 

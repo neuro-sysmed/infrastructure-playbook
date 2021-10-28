@@ -1,10 +1,8 @@
 AuthType=auth/munge
-DbdAddr=ecc-head-ubuntu
-DbdHost=localhost
-LogFile=/var/log/slurm/slurmdbd.log
-PidFile=/var/run/slurmdbd.pid
+DbdAddr={{ groups['slurmhead'][0] }}
+DbdHost={{ groups['slurmhead'][0] }}
 SlurmUser=slurm
-StorageHost=nsm
+StorageHost={{ groups['nsm'][0] }}
 StorageLoc=slurm_acct
 StorageUser=slurm
 StoragePass=slurm

@@ -1,7 +1,7 @@
 AccountingStorageType=accounting_storage/slurmdbd
 AuthType=auth/munge
 ClusterName=nsm
-ControlMachine=ecc-head
+ControlMachine={{ groups['slurmhead'][0] }}
 DefMemPerCPU=1000
 JobAcctGatherType=jobacct_gather/cgroup
 ProctrackType=proctrack/cgroup

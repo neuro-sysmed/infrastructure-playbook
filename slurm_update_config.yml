@@ -1,0 +1,59 @@
+- hosts: all
+  become: true
+
+  tags:
+    - slurmconfig
+
+  vars_files:
+   - group_vars/system.yml
+   - secret_group_vars/system.vault    
+
+  tasks:
+    - name: mount nfs points
+      include: tasks/nfs.yml
+      tags: "nfs"
+
+    - name: Create users and groups
+      include: tasks/users_groups.yml
+      tags: 'users'
+
+    - name: configure autofs
+      include: tasks/autofs.yml
+      tags: autofs
+
+    - name: Update slurm config
+      include: tasks/slurm_config.yml
+
+# this is needed otherwise not all information will be available for creating the slurm config for the controller.
+- hosts: small, medium, large, huge
+  become: true
+  tags:
+    - nodes
+
+
+  tasks:
+    - name: restart slurmctld
+      systemd:
+        name: slurmd
+        enabled: true
+        state: restarted
+
+ 
+
+- hosts: head
+  become: true
+
+  tags:
+    - head
+
+  vars_files:
+   - group_vars/system.yml
+
+  tasks:
+
+    - name: restart slurmctld
+      systemd:
+        name: slurmctld
+        enabled: true
+        state: restarted
+

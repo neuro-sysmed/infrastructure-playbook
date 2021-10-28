@@ -1,3 +1,7 @@
+[nsm]
+nsm ansible_user=sysadmin 
+
+
 [slurmhead]
 ecc-head-ubuntu ansible_user=sysadmin 
 
