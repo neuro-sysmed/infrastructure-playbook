@@ -37,6 +37,7 @@
 
 
 - hosts: slurmhead
+  become: true
 
   vars_files:
    - group_vars/system.yml
