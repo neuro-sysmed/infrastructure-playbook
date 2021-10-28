@@ -2,7 +2,7 @@
 - name: install slurmd
   package:
     name:
-      - slurm-slurmd
+      - slurmd
       - platform-python-devel
 
 - name: slurm log

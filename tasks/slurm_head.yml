@@ -3,11 +3,8 @@
 - name: install slurmctld and slurmdbd
   package:
     name:
-      - slurm-slurmctld
-      - slurm-slurmdbd
-      - platform-python-devel
-      - mariadb 
-      - mariadb-server
+      - slurmctld
+      - slurmdbd
 
 - name: slurm lib dir
   file:
@@ -23,11 +20,6 @@
     owner: slurm
     group: slurm
 
-- name: start mariadb
-  systemd:
-    name: mariadb
-    enabled: true
-    state: started
 
 - name: copy slurm conf
   template: 
