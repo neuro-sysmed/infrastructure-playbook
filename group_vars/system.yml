@@ -60,11 +60,11 @@ mysql_databases:
   - name: cromwell
 mysql_users: 
   - name: slurm
-    host: "localhost"
+    host: "%"
     password: slurm
     priv: "slurm_acct.*:ALL"
   - name: cromwell
-    host: localhost
+    host: "%"
     password: cromwell
     priv: "cromwell.*:ALL"
 

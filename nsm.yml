@@ -46,7 +46,7 @@
     - name: install rabbitmq
       include: tasks/rabbitmq.yml
       tags: rabbitmq
-
+      
 
     - name: setup slurm-client
       include: tasks/slurm_client.yml

@@ -51,7 +51,7 @@
     enabled: true
     state: restarted
 
-- name: add sysadmin as admin/root
-  command:
-    cmd: sacctmgr -i add user sysadmin AdminLevel=Admin Account=root
+#- name: add sysadmin as admin/root
+#  command:
+#    cmd: sacctmgr -i add user sysadmin AdminLevel=Admin Account=root
 

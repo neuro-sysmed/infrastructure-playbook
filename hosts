@@ -1,5 +1,5 @@
 [slurmhead]
-ecc-ubuntu ansible_user=sysadmin 
+ecc-head-ubuntu ansible_user=sysadmin 
 
 [slurmnode]
 ecc-node-ubuntu ansible_user=sysadmin
