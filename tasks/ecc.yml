@@ -71,7 +71,7 @@
 
 - name: install ecc-playbook in {{ ecc_playbook_root }}
   git:
-    repo: https://github.com/neuro-sysmed/ecc-playbook.git
+    repo: https://github.com/neuro-sysmed/infrastructure-playbook.git
     dest: "{{ ecc_playbook_root }}"
     force: yes
   

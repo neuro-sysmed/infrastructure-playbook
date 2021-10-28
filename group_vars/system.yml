@@ -78,7 +78,7 @@ ecc_user: sysadmin
 nsm_analysis_root: "{{cluster_root}}/lib/nsm-analysis"
 nsm_analysis_user: sysadmin
 
-ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"
+ecc_playbook_root: "{{cluster_root}}/lib/infrastructure-playbook"
 
 
 influxdb_host: "nsm:8086"
