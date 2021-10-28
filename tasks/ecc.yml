@@ -88,22 +88,27 @@
   when: playbook_venv.stat.exists == false
 
     
+- name: Install pip  for infrastructure-playbook
+  pip:
+    name: wheel
+    virtualenv: "{{  infrastructure_playbook_root }}/venv"
+  when: playbook_venv.stat.exists == false
 
 
-- name: Install specified python requirements for ecc-playbook
+- name: Install specified python requirements for infrastructure-playbook
   pip:
     requirements: "{{  infrastructure_playbook_root }}/requirements.txt"
     virtualenv: "{{  infrastructure_playbook_root }}/venv"
   when: playbook_venv.stat.exists == false
 
 
-- name: Install ecc-playbook ansible roles
+- name: Install infrastructure-playbook ansible roles
   command:
     chdir: "{{  infrastructure_playbook_root }}"
     cmd: ./venv/bin/ansible-galaxy role install -p roles -r requirements.yml
 
 
-- name: Install ecc-playbook ansible collections
+- name: Install infrastructure-playbook ansible collections
   command:
     chdir: "{{  infrastructure_playbook_root }}"
     cmd: ./venv/bin/ansible-galaxy collection install -p roles -r requirements.yml
