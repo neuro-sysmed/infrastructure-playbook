@@ -69,45 +69,40 @@
     regexp: "^ECC_CONF="
     line: "ECC_CONF={{cluster_root}}/etc/ecc.yaml"
 
-- name: install ecc-playbook in {{ ecc_playbook_root }}
+- name: install infrastructure-playbook in {{ infrastructure_playbook_root }}
   git:
     repo: https://github.com/neuro-sysmed/infrastructure-playbook.git
-    dest: "{{ ecc_playbook_root }}"
+    dest: "{{ infrastructure_playbook_root }}"
     force: yes
   
-- name: create venv in {{ ecc_playbook_root }}
+- name: create venv in {{ infrastructure_playbook_root }}
   command:
-    chdir: "{{ ecc_playbook_root }}"
+    chdir: "{{ infrastructure_playbook_root }}"
     cmd: python3.8 -m venv venv
-    creates: "{{ ecc_playbook_root }}/venv"
+    creates: "{{ infrastructure_playbook_root }}/venv"
 
-- name: update pip
-  become: true
-  become_user: "{{ecc_user}}"
-  pip: 
-    name: pip
-    extra_args: --upgrade
-    virtualenv: "{{  ecc_playbook_root }}/venv"
 
 - name: Install specified python requirements for ecc-playbook
-  become: true
-  become_user: "{{ecc_user}}"
   pip:
-    requirements: "{{  ecc_playbook_root }}/requirements.txt"
-    virtualenv: "{{  ecc_playbook_root }}/venv"
+    requirements: "{{  infrastructure_playbook_root }}/requirements.txt"
+    virtualenv: "{{  infrastructure_playbook_root }}/venv"
 
 
 - name: Install ecc-playbook ansible roles
-  become: true
-  become_user: "{{ecc_user}}"
   command:
-    chdir: "{{  ecc_playbook_root }}"
-    cmd: ./venv/bin/ansible-galaxy install -p roles -r requirements.yml
+    chdir: "{{  infrastructure_playbook_root }}"
+    cmd: ./venv/bin/ansible-galaxy role install -p roles -r requirements.yml
+
+
+- name: Install ecc-playbook ansible collections
+  command:
+    chdir: "{{  infrastructure_playbook_root }}"
+    cmd: ./venv/bin/ansible-galaxy collection install -p roles -r requirements.yml
 
 
 - name: Copy vault_password file 
   copy:
     src: vault_password
-    dest: "{{  ecc_playbook_root }}/vault_password"
+    dest: "{{  infrastructure_playbook_root }}/vault_password"
     owner: "{{ecc_user}}"
     mode: '0644'
