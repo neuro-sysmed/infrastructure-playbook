@@ -10,7 +10,7 @@ ecc:
     name_template: "ecc-node-{}"
 
     image: GOLD CentOS 7
-    ansible_dir: {{ecc_playbook_root }}
+    ansible_dir: {{infrastructure_playbook_root }}
     ansible_cmd: ./venv/bin/ansible-playbook -i /usr/local/bin/ecc_nodes.py ecc_live.yml
 
 

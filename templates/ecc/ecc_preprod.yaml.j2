@@ -10,7 +10,7 @@ ecc:
     name_template: "ecc-node-{}"
 
     image: /subscriptions/5a9e26a0-6897-44d6-963e-fae2a2061f27/resourceGroups/FOR-NEURO-SYSMED-UTV-COMPUTE/providers/Microsoft.Compute/galleries/neurosysmed.img.gallery/images/ecc-node/versions/0.0.1
-    ansible_dir: {{ecc_playbook_root }}
+    ansible_dir: {{infrastructure_playbook_root }}
     ansible_cmd: ./venv/bin/ansible-playbook -i /usr/local/bin/ecc_nodes.py ecc_live.yml
 
     #azure variables
