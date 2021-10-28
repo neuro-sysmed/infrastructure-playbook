@@ -1,15 +1,13 @@
 
-
-- name: check if singularity executable is present
+- name: check if ecc-cli executable is present
   shell: "which /usr/local/bin/ecc-cli"
   register: ecc_bin
   ignore_errors: true
 
-
 - name: install ecc
   pip:
     executable: pip
-    name: git+https://github.com/neuromics/ecc.git@azure
+    name: git+https://github.com/neuromics/ecc.git@multi_q_merged
     extra_args: --prefix=/usr/local 
   when: ecc_bin.rc != 0
 

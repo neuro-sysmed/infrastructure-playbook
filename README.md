@@ -27,6 +27,8 @@ ansible-playbook ecc.yml
 
 ln -s   /usr/local/etc/ecc_utv.yml /usr/local/etc/ecc.yml
 
+# to be able to use ecc azure-cli needs to be availabe:
+az login
 
 ```
 
@@ -34,7 +36,9 @@ ln -s   /usr/local/etc/ecc_utv.yml /usr/local/etc/ecc.yml
 ## Create some additional VMs
 
 ```
-/usr/local/bin/ecc-cli add project ecc ecc-node
+
+
+/usr/local/bin/ecc-cli add project ecc-head-ubuntu ecc-node-ubuntu projectvm
 # run playbooks to bootstrap the vms
 ansible-playbook project_vm.yml
 ansible-playbook slurm.yml
