@@ -1,0 +1,11 @@
+[slurmhead]
+ecc-ubuntu ansible_user=sysadmin 
+
+[slurmnode]
+ecc-node-ubuntu ansible_user=sysadmin
+
+[projectvm]
+project ansible_user=sysadmin
+ 
+
+
