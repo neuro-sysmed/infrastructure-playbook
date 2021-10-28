@@ -1,9 +1,17 @@
 
+
+  - name: check if singularity executable is present
+    shell: "which /usr/local/bin/ecc-cli"
+    register: ecc_bin
+    ignore_errors: true
+
+
 - name: install ecc
   pip:
     executable: pip
     name: git+https://github.com/neuromics/ecc.git@azure
     extra_args: --prefix=/usr/local 
+  when: ecc_bin.rc != 0
 
 - name: check if ssh-key exists
   become: true
