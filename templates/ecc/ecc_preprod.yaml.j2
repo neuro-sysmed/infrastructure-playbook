@@ -3,22 +3,45 @@ azure:
 
 ecc:
     log: ecc.log
-    nodes_max: 10
-    nodes_min: 0
-    nodes_spare: 0
     sleep: 30
-    name_template: "ecc-node-{}"
 
     image: /subscriptions/5a9e26a0-6897-44d6-963e-fae2a2061f27/resourceGroups/FOR-NEURO-SYSMED-UTV-COMPUTE/providers/Microsoft.Compute/galleries/neurosysmed.img.gallery/images/ecc-node/versions/0.0.1
     ansible_dir: {{infrastructure_playbook_root }}
     ansible_cmd: ./venv/bin/ansible-playbook -i /usr/local/bin/ecc_nodes.py ecc_live.yml
 
+
     #azure variables
     compute_group: FOR-NEURO-SYSMED-PRE-PROD-COMPUTE
-    network_group:  FOR-NEURO-SYSMED-PRE-PROD-NETWORK
+    network_group: FOR-NEURO-SYSMED-PRE-PROD-NETWORK
     virtual_network: FOR-NEURO-SYSMED-PRE-PROD-VNET
     virtual_subnet: FOR-NEURO-SYSMED-PRE-PROD-SNET-Workload
-    vm_size: Standard_D4as_v4
+    #    vm_size: Standard_D2s_v4
     admin_username: {{ecc_user}}
     admin_password: {{ecc_user_password}}
     ssh_key: "{{ssh_key}}"
+    
+queues:
+  small:
+    vm_size: Standard_A1_v2
+    nodes_max: 2
+    nodes_min: 0
+    idle_time: 60
+    name_template: "ecc-small-{}"
+  medium:
+    vm_size: Standard_A2_v2
+    nodes_max: 4
+    nodes_min: 0
+    idle_time: 30
+    name_template: "ecc-medium-{}"
+  large:
+    vm_size: Standard_A2_v2
+    nodes_max: 2
+    nodes_min: 0
+    idle_time: 30
+    name_template: "ecc-large-{}"
+  huge:
+    vm_size: Standard_A2_v2
+    nodes_max: 2
+    nodes_min: 0
+    idle_time: 10
+    name_template: "ecc-huge-{}"     
