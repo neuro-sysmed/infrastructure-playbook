@@ -73,19 +73,28 @@
   git:
     repo: https://github.com/neuro-sysmed/infrastructure-playbook.git
     dest: "{{ infrastructure_playbook_root }}"
-    force: yes
+
   
+- name: check if venv in {{ infrastructure_playbook_root }} exists
+  stat:
+    path: "{{ infrastructure_playbook_root }}/venv"
+  register: playbook_venv
+
 - name: create venv in {{ infrastructure_playbook_root }}
   command:
     chdir: "{{ infrastructure_playbook_root }}"
     cmd: python3.8 -m venv venv
     creates: "{{ infrastructure_playbook_root }}/venv"
+  when: playbook_venv.stat.exists == false
+
+    
 
 
 - name: Install specified python requirements for ecc-playbook
   pip:
     requirements: "{{  infrastructure_playbook_root }}/requirements.txt"
     virtualenv: "{{  infrastructure_playbook_root }}/venv"
+  when: playbook_venv.stat.exists == false
 
 
 - name: Install ecc-playbook ansible roles
