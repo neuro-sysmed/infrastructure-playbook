@@ -27,10 +27,9 @@
 
   - name: copy slurm conf
     template: 
-      src: files/slurm/slurm.conf
+      src: templates/slurm/slurm.conf.j2
       dest: /etc/slurm-llnl/slurm.conf
       mode: 0644
       owner: slurm
       group: slurm
       backup: yes
-
