@@ -1,0 +1,13 @@
+- name: Install and cofigure external software into /usr/local
+
+  block:
+
+
+    - name: Install lmod
+      include_tasks:
+        file: tasks/lmod.yml
+
+
+    - name: Install go
+      include_tasks:
+        file: tasks/go_lang.yml
