@@ -7,7 +7,7 @@
 
 - name: slurm spool dir
   file:
-    path: /var/spool/slurm/
+    path: /var/spool/slurm/slurmd
     state: directory
     owner: slurm
     group: slurm
