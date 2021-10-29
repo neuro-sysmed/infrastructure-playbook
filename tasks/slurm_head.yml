@@ -13,12 +13,6 @@
     owner: slurm
     group: slurm
 
-- name: slurm log
-  file:
-    path: /var/log/slurm
-    state: directory
-    owner: slurm
-    group: slurm
 
 
 - name: copy slurm conf

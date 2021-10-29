@@ -10,7 +10,6 @@
         - cgroup-tools
         - munge
 
-
   - name: add munge key
     copy:
       dest: "/etc/munge/munge.key"

@@ -4,12 +4,14 @@
     name:
       - slurmd
 
-- name: slurm log
+
+- name: slurm spool dir
   file:
-    path: /var/log/slurm
+    path: /var/spool/slurm/
     state: directory
     owner: slurm
     group: slurm
+
 
 
 - name: copy slurmdbd conf
