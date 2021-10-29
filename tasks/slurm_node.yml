@@ -1,16 +1,16 @@
-
-- name: install slurmd
-  package:
-    name:
-      - slurmd
-
-
 - name: slurm spool dir
   file:
     path: /var/spool/slurm/slurmd
     state: directory
     owner: slurm
     group: slurm
+
+
+- name: install slurmd
+  package:
+    name:
+      - slurmd
+
 
 
 
