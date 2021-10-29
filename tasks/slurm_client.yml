@@ -24,6 +24,15 @@
       enabled: true
       state: started
 
+  - name: copy cgroup.conf for slurm
+    copy:
+      src: files/slurm/cgroup.conf
+      dest: /etc/slurm-llnl/cgroup.conf
+      owner: slurm
+      group: slurm
+      mode: 0644
+
+
   - name: copy slurm conf
     template: 
       src: templates/slurm/slurm.conf.j2

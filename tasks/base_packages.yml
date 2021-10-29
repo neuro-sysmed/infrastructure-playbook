@@ -6,6 +6,7 @@
       package:
         name:
         - python3.8
+        - mlocate
         - python3-pip
         - python3.8-venv
         - python3-pymysql
