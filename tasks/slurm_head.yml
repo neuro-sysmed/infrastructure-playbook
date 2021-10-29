@@ -39,6 +39,12 @@
     enabled: true
     state: restarted
 
+- name: add cluster to slurmdbd
+  ansible.builtin.shell:  |
+    sacctmgr add cluster nsm
+    
+
+
 - name: start slurmctld
   systemd:
     name: slurmctld

@@ -45,3 +45,55 @@ ansible-playbook slurm.yml
 
 ```
 
+
+
+## slurm 
+
+```
+# See HPC status 
+sinfo
+
+# list queue
+squeue
+
+# detailed job info
+sacct
+
+# Submit a job 
+sbatch hpc_job.sh
+
+
+
+# Oneliner:
+  sbatch  -p debug --wrap "samtools index sample.bam "
+
+```
+
+
+## modules (lmod)
+
+```
+# list all modules 
+module avail
+
+# load module default version
+module load samtools
+
+# load  module spec version 
+module load samtools/1.11
+
+# save module env (default), will be reloaded on login
+module save
+
+
+# save, and load module env (default)
+module save project1
+module loadsave project1
+
+
+# load shared environment
+module load StdEnv # default for all users 
+
+
+
+```

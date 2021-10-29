@@ -30,6 +30,10 @@
       tags: 'base_packages'
 
 
+    - name: Install packages
+      include: tasks/non_base_software.yml
+      tags: 'non_base_software'
+
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
@@ -38,15 +42,13 @@
       include: tasks/autofs.yml
       tags: autofs
 
-
     - name: Install influxdb and grafana
       include: tasks/influxdb.yml
       tags: 'influxdb'
 
     - name: install rabbitmq
       include: tasks/rabbitmq.yml
-      tags: rabbitmq
-      
+      tags: rabbitmq    
 
     - name: setup slurm-client
       include: tasks/slurm_client.yml
@@ -61,5 +63,5 @@
       become_user: "{{ecc_user}}"
       include: tasks/wdl_related.yml
       tags: 'wdl'
-
+    
 

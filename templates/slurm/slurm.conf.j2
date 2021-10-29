@@ -1,4 +1,5 @@
 AccountingStorageType=accounting_storage/slurmdbd
+AccountingStorageHost={{ groups['slurmhead'][0] }}
 AuthType=auth/munge
 ClusterName=nsm
 ControlMachine={{ groups['slurmhead'][0] }}
@@ -18,8 +19,8 @@ SlurmUser=slurm
 StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
-
-NodeName=ecc-node-ubuntu  CoresPerSocket=1 CPUs=1 RealMemory=64000 Sockets=1  ThreadsPerCore=1  state=UNKNOWN
+# dummy holder for the initial bootstraping
+NodeName={{ groups['slurmnode'][0] }}  CoresPerSocket=1 CPUs=1 RealMemory=2653 Sockets=1  ThreadsPerCore=1  state=UNKNOWN
 
 
 # SMALL

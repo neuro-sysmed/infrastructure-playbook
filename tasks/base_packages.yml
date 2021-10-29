@@ -42,13 +42,3 @@
         file: microsoft_packages.yml
 
 
-    - name: Install lmod
-      include_tasks:
-        file: tasks/lmod.yml
-
-
-    - name: Install go
-      include_tasks:
-        file: tasks/go_lang.yml
-
-        
