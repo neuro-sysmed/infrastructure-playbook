@@ -18,5 +18,10 @@
 
     - name: mkdir dir 
       ansible.collection.file:
+        dest: /data/{{group_name}}
+        owner: root
+        mode: 0755
+        state: dir
+
         
 
