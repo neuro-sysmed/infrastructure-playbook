@@ -1,4 +1,4 @@
-[nsm]
+[nsm-core]
 nsm ansible_user=sysadmin 
 
 

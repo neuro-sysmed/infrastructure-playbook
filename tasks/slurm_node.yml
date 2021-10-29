@@ -3,7 +3,6 @@
   package:
     name:
       - slurmd
-      - platform-python-devel
 
 - name: slurm log
   file:
