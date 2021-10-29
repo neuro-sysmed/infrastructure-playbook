@@ -12,11 +12,11 @@
     group: slurm
 
 
-- name: copy slurm conf
+- name: copy slurmdbd conf
   template: 
-    src: files/slurm/slurm.conf
-    dest: /etc/slurm/slurm.conf
-    mode: 0644
+    src: templates/slurm/slurmdbd.conf.j2
+    dest: /etc/slurm-llnl/slurmdbd.conf
+    mode: 0600
     owner: slurm
     group: slurm
     backup: yes
