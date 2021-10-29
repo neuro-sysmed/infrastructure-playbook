@@ -8,6 +8,7 @@
       - jq
       - nfs-common
       - vim 
+      - cgroup
       - cgroup-tools
       - munge
 
