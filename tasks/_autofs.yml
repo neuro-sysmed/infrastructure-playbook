@@ -9,12 +9,12 @@
     - name: write /etc/auto.master.d/{{group_name}}.autofs file
       template:
         src: templates/autofs/project.autofs.j2
-        dest: /tmp/{{group_name}}.autofs
+        dest: /etc/auto.master.d/{{group_name}}.autofs
 
     - name: write /etc/auto.{{group_name}} file
       template:
         src: templates/autofs/auto.project.j2
-        dest: /tmp/auto.{{group_name}}
+        dest: /etc/auto.{{group_name}}
 
     - name: mkdir /data/{{group_name}}/ directory
       ansible.builtin.file:
