@@ -22,7 +22,7 @@
     systemd:
       name: munge
       enabled: true
-      state: started
+      state: restarted
 
   - name: copy cgroup.conf for slurm
     copy:
