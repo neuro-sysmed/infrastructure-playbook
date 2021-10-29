@@ -17,7 +17,7 @@
         dest: /tmp/auto.{{group_name}}
 
     - name: mkdir dir 
-      ansible.collection.file:
+      ansible.builtin.file:
         dest: /data/{{group_name}}
         owner: root
         mode: 0755
