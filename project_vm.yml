@@ -38,3 +38,7 @@
       tags: slurm-client
 
 
+    - name: configure lmod
+      include: tasks/lmod_config.yml
+      tags: slurm-client
+
