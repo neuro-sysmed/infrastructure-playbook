@@ -7,7 +7,7 @@
 - name: install ecc
   pip:
     executable: pip
-    name: git+https://github.com/neuromics/ecc.git@multi_q_merged
+    name: git+https://github.com/neuro-sysmed/ecc.git
     extra_args: --prefix=/usr/local 
   when: ecc_bin.rc != 0
 
