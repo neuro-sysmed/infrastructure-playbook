@@ -1,7 +1,12 @@
 ---
-- name: configure lmod
+- name: lmod "clients"
 
   block : 
+
+    - name: install enviroment module dependencies
+      package:
+        name:
+        - lua5.3
 
 
     - name: link bash configfile
