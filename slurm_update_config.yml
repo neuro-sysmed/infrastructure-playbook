@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: slurmhead, small, medium, large, huge
   become: true
 
   tags:
@@ -32,7 +32,7 @@
 
 
   tasks:
-    - name: restart slurmctld
+    - name: restart slurmd
       systemd:
         name: slurmd
         enabled: true
