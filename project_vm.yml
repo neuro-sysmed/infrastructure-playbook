@@ -1,8 +1,5 @@
 - hosts: projectvm
 
-  hosts: localhost
-  connection: local  
-  become: true
 
   vars_files:
    - group_vars/system.yml
