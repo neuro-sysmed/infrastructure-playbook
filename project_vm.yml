@@ -1,4 +1,5 @@
 - hosts: projectvm
+  become: true
 
 
   vars_files:
