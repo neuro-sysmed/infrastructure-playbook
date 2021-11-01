@@ -22,8 +22,8 @@
         owner: root
         mode: 0755
         state: directory
-        
-    - name: write mountpoints to /data{{group}}/README
+
+    - name: write mountpoints to /data/{{group['key']}}/README
       template:
         src: templates/autofs/README.j2
-        dest: /data{{group}}/README
+        dest: /data/{{group['key']}}/README
