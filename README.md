@@ -56,6 +56,9 @@ sinfo
 # list queue
 squeue
 
+# users jobs
+squeue -u user_id
+
 # detailed job info
 sacct
 
@@ -68,6 +71,8 @@ sbatch hpc_job.sh
   sbatch  -p debug --wrap "samtools index sample.bam "
 
 ```
+
+For all options see here: https://slurm.schedmd.com/sbatch.html
 
 
 ## modules (lmod)
