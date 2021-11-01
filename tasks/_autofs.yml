@@ -23,7 +23,7 @@
         mode: 0755
         state: directory
 
-    - name: write mountpoints to /data/{{group['key']}}/README
+    - name: write mountpoints to /data/{{group['key']}}.projects
       template:
         src: templates/autofs/README.j2
-        dest: /data/{{group['key']}}/README
+        dest: /data/{{group['key']}}.projects
