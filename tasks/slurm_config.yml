@@ -21,7 +21,7 @@
                                             'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
                                             'CPUs': hostvars[ item ].ansible_processor_vcpus,
                                             'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
-  with_items: "{{ groups['small'] }}"
+  with_items: "{{ groups['small']|default([]) }}"
 
 
 - name: create dynamic medium slurm node list
@@ -33,7 +33,7 @@
                                             'CPUs': hostvars[ item ].ansible_processor_vcpus,
                                             'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
 
-  with_items: "{{ groups['medium'] }}"
+  with_items: "{{ groups['medium']|default([]) }}"
 
 
 - name: create dynamic large slurm node list
