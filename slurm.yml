@@ -39,6 +39,10 @@
       include: tasks/slurm_client.yml
       tags: slurm-client
 
+    - name: configure lmod
+      include: tasks/lmod_config.yml
+      tags: lmod_config
+
 
 
 - hosts: slurmhead
