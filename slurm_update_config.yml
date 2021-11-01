@@ -40,7 +40,7 @@
 
  
 
-- hosts: head
+- hosts: slurmhead
   become: true
 
   tags:
