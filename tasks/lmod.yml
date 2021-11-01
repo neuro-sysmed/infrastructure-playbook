@@ -38,6 +38,12 @@
         rm -rf /tmp/lmod*
       when: not lmod_dir.stat.exists
 
+    - name: link bash configfile
+      ansible.builtin.file:
+        src: /usr/local/lmod/lmod/init/profile
+        dest: /etc/profile.d/lmod.sh
+        state: link
+
     - name: copy modulepath file
       ansible.builtin.copy:
         src: files/lmod/modulespath
@@ -45,15 +51,23 @@
         owner: root
         mode: 0644
 
-    - name: link bash configfile
+    - name: Check that the modulefiles directoy exists
       ansible.builtin.file:
-        src: /usr/local/lmod/lmod/init/profile
-        dest: /etc/profile.d/lmod.sh
-        state: link
+        src: /usr/local/modulefiles/
+        mode: 0755
+        owner: root
+        state: directory
 
-    # - name: link csh configfile
-    #   ansible.builtin.file:
-    #     src: /usr/local/Modules/init/profile.csh 
-    #     dest: /etc/profile.d/lmod.csh
-    #     state: link
+    - name: copy StdEnv file
+      ansible.builtin.copy:
+        src: files/lmod/StdEnv.lua
+        dest: /usr/local/modulefiles/StdEnv.lua
+        owner: root
+        mode: 0644
+
+
+    - name: lmod load StdEnv or user default
+      ansible.builtin.copy:
+        src: files/lomd/lmod_stdenv.sh
+        dest: /etc/profile.d/lmod_stdenv.sh
 
