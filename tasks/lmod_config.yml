@@ -12,6 +12,6 @@
         
     - name: lmod load StdEnv or user default
       ansible.builtin.copy:
-        src: files/lomd/lmod_stdenv.sh
+        src: files/lmod/lmod_stdenv.sh
         dest: /etc/profile.d/lmod_stdenv.sh
 
