@@ -55,6 +55,15 @@
     - name: install slurm head
       include: tasks/slurm_head.yml
       tags: 'slurm-head'
+    
+    - name: add ecc_conf to /etc/environment
+      become_user: root
+      lineinfile:
+        dest: "/etc/environment"
+        state: present
+        regexp: "^ECC_CONF="
+        line: "ECC_CONF={{cluster_root}}/etc/ecc.yaml"
+
 
 
 - hosts: slurmnode
