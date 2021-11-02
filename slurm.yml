@@ -43,6 +43,18 @@
       include: tasks/lmod_config.yml
       tags: lmod_config
 
+    - name: copy admin ssh key for easier access to nodes
+      copy:
+        src: "~{{ecc_user}}/.ssh/id_rsa"
+        dest: "~{{ecc_user}}/.ssh"
+        mode: 0400
+
+    - name: copy admin ssh key for easier access to nodes
+      copy:
+        src: "~{{ecc_user}}/.ssh/id_rsa.pub"
+        dest: "~{{ecc_user}}/.ssh"
+        mode: 0400
+
 
 
 - hosts: slurmhead
