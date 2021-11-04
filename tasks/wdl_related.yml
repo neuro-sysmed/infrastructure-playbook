@@ -32,13 +32,13 @@
     
 - name: download cromwell-jar
   get_url: 
-    url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
+    url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-70.jar
     dest: "{{cluster_root}}jars/"
     mode: '0644'
 
 - name: download womtool-jar
   get_url: 
-    url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
+    url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-70.jar
     dest: "{{cluster_root}}jars/"
     mode: '0644'
 
