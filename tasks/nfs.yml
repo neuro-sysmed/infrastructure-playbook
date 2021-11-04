@@ -11,6 +11,7 @@
     state: directory
     owner: root
     group: sysadmin
+    mode: 0755
 
 - name: unmount /usr/local NFS volume 
   ansible.posix.mount:
@@ -35,6 +36,7 @@
     state: directory
     owner: root
     group: root
+    mode: 0755
 
 - name: unmount /home/nfs NFS volume 
   ansible.posix.mount:
@@ -50,7 +52,7 @@
     opts: vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
-
+    mode: 0755
 
 
 - name: mkdir /scratch
@@ -59,7 +61,8 @@
     state: directory
     owner: root
     group: sysadmin
-
+    mode: 0755
+    
 - name: unmount /scratch NFS volume 
   ansible.posix.mount:
     path: /scratch
@@ -83,6 +86,7 @@
     state: directory
     owner: root
     group: sysadmin
+    mode: 0755
 
 - name: unmount /refs NFS volume 
   ansible.posix.mount:
