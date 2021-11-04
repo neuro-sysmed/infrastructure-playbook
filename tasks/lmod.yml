@@ -51,9 +51,9 @@
         owner: root
         mode: 0644
 
-    - name: Check that the modulefiles directoy exists
+    - name: Ensure that the modulefiles directoy exists
       ansible.builtin.file:
-        src: /usr/local/modulefiles/
+        path: /usr/local/modulefiles/
         mode: 0755
         owner: root
         state: directory
