@@ -1,14 +1,23 @@
 
+
+- name: check if cromwell-utils are installed
+  shell: "which /usr/local/bin/cromwell-cli"
+  register: cromwell_bin
+  ignore_errors: true
+
+
 - name: install cromwell-utils
   pip:
     name: git+https://www.github.com/neuro-sysmed/cromwell-utils.git
     extra_args: --prefix=/usr/local/ 
+  when: cromwell_bin.rc != 0
 
 - name: make dir for nsm-analysis
   file:
     path: "{{ nsm_analysis_root }}"
     owner: "{{nsm_analysis_user}}"
     state: directory
+    owner: "{{ecc_user}}"
 
 - name: Git checkout of nsm-analysis
   git:
@@ -53,8 +62,8 @@
     path: "{{cluster_root}}images/"
     state: directory
 
-- name: (re)build nsm-tools image, overwrites to ensure right version
-  command:
-    chdir: "{{cluster_root}}/images"
-    cmd: singularity build -F nsm-tools.sif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
+#- name: (re)build nsm-tools image, overwrites to ensure right version
+#  command:
+#    chdir: "{{cluster_root}}/images"
+#    cmd: singularity build -F nsm-tools.sif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
     
