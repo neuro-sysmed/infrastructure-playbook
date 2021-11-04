@@ -67,11 +67,16 @@
     regexp: "^ECC_CONF="
     line: "ECC_CONF={{cluster_root}}/etc/ecc.yaml"
 
+- name: check if {{ infrastructure_playbook_root }} exists
+  stat:
+    path: "{{ infrastructure_playbook_root }}"
+  register: playbook_install
+
 - name: install infrastructure-playbook in {{ infrastructure_playbook_root }}
   git:
     repo: https://github.com/neuro-sysmed/infrastructure-playbook.git
     dest: "{{ infrastructure_playbook_root }}"
-
+  when: playbook_install.stat.exists == false
   
 - name: check if venv in {{ infrastructure_playbook_root }} exists
   stat:

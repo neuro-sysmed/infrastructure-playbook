@@ -26,6 +26,7 @@
     opts: sec=sys,vers=3,nolock,proto=tcp
     state: mounted
     fstype: nfs
+  ignore_errors: yes
 
 
 - name: mkdir /home/nfs/
