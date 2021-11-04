@@ -9,9 +9,9 @@
    - secret_group_vars/system.vault    
 
   tasks:
-#    - name: mount nfs points
-#      include: tasks/nfs.yml
-#      tags: "nfs"
+    - name: mount nfs points
+      include: tasks/nfs.yml
+      tags: "nfs"
 
     - name: Create users and groups
       include: tasks/users_groups.yml
