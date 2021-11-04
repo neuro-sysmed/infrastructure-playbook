@@ -47,12 +47,16 @@
       copy:
         src: "~{{ecc_user}}/.ssh/id_rsa"
         dest: "~{{ecc_user}}/.ssh"
+        owner: "{{ecc_user}}"
+        group: "{{ecc_user}}"
         mode: 0400
 
     - name: copy admin ssh key for easier access to nodes
       copy:
         src: "~{{ecc_user}}/.ssh/id_rsa.pub"
         dest: "~{{ecc_user}}/.ssh"
+        owner: "{{ecc_user}}"
+        group: "{{ecc_user}}"
         mode: 0400
 
 

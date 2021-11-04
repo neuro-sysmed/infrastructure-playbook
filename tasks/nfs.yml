@@ -50,3 +50,25 @@
     fstype: nfs
 
 
+
+- name: mkdir /scratch
+  file:
+    path: /scratch
+    state: directory
+    owner: root
+    group: sysadmin
+
+- name: unmount /scratch NFS volume 
+  ansible.posix.mount:
+    path: /scratch
+    state: unmounted
+
+
+
+- name: Mount /scratch NFS volume 
+  ansible.posix.mount:
+    src: systemfileshare.blob.core.windows.net:/systemfileshare/scratch
+    path: /scratch
+    opts: sec=sys,vers=3,nolock,proto=tcp
+    state: mounted
+    fstype: nfs
