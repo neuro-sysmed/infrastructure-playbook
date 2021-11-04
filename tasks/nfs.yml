@@ -52,7 +52,6 @@
     opts: vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
-    mode: 0755
 
 
 - name: mkdir /scratch
@@ -62,7 +61,7 @@
     owner: root
     group: sysadmin
     mode: 0755
-    
+
 - name: unmount /scratch NFS volume 
   ansible.posix.mount:
     path: /scratch
