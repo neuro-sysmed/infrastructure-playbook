@@ -1,20 +1,21 @@
 azure:
-    subscription_id: c03b7956-26c8-48b2-9b3b-65dd588332d5
+    subscription_id: 56ca07af-d292-4b92-8996-3f72ff3476a8
 
 ecc:
     log: ecc.log
     sleep: 30
 
-    image: /subscriptions/5a9e26a0-6897-44d6-963e-fae2a2061f27/resourceGroups/FOR-NEURO-SYSMED-UTV-COMPUTE/providers/Microsoft.Compute/galleries/neurosysmed.img.gallery/images/ecc-node/versions/0.0.1
+    image:  /subscriptions/5a9e26a0-6897-44d6-963e-fae2a2061f27/resourceGroups/FOR-NEURO-SYSMED-UTV-COMPUTE/providers/Microsoft.Compute/galleries/neurosysmed.img.gallery/images/ecc-node-ubuntu/versions/0.1.0
     ansible_dir: {{infrastructure_playbook_root }}
     ansible_cmd: ./venv/bin/ansible-playbook -i /usr/local/bin/ecc_nodes.py slurm_update_config.yml
 
 
     #azure variables
-    compute_group: FOR-NEURO-SYSMED-PRE-PROD-COMPUTE
-    network_group: FOR-NEURO-SYSMED-PRE-PROD-NETWORK
-    virtual_network: FOR-NEURO-SYSMED-PRE-PROD-VNET
-    virtual_subnet: FOR-NEURO-SYSMED-PRE-PROD-SNET-Workload
+    compute_group: FOR-NEURO-SYSMED-PROD-COMPUTE
+    network_group: FOR-NEURO-SYSMED-PROD-MANAGEMENT
+    virtual_network: FOR-NEURO-SYSMED-PROD-VNET
+    virtual_subnet: HPCSubnet
+
     vm_size: Standard_D2s_v4
     admin_username: {{ecc_user}}
     admin_password: {{ecc_user_password}}

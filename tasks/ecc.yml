@@ -50,12 +50,21 @@
     dest: "{{cluster_root}}/etc/ecc_utv.yaml"
     owner: "{{ecc_user}}"
 
-- name: Deploy ecc prod config file, will keep local copy if exists!
+- name: Deploy ecc preprod config file, will keep local copy if exists!
   become: true
   become_user: "{{ecc_user}}"
   template:
     src: templates/ecc/ecc_preprod.yaml.j2
     dest: "{{cluster_root}}/etc/ecc_preprod.yaml"
+    owner: "{{ecc_user}}"
+
+
+- name: Deploy ecc prod config file, will keep local copy if exists!
+  become: true
+  become_user: "{{ecc_user}}"
+  template:
+    src: templates/ecc/ecc_prod.yaml.j2
+    dest: "{{cluster_root}}/etc/ecc_prod.yaml"
     owner: "{{ecc_user}}"
 
 
