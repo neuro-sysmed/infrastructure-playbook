@@ -1,7 +1,6 @@
-- name: configuring autofs for {{group['key']}}
+- name: configuring autofs for scratch
 
   block:
-
 
     - name: write /etc/auto.master.d/scratch.autofs file
       template:
@@ -13,18 +12,4 @@
         src: templates/autofs/auto.scratch.j2
         dest: /etc/auto.scratch
 
-    - name: mkdir /scratch/groups/ directory
-      ansible.builtin.file:
-        dest: /data/{{group['key']}}
-        owner: root
-        mode: 0755
-        state: directory
-      loop: "{{ storage | dict2items }}"
-      loop_control:
-      loop_var: group
 
-
-#    - name: write mountpoints to /data/{{group['key']}}.projects
-#      template:
-#        src: templates/autofs/README.j2
-#        dest: /data/{{group['key']}}.projects

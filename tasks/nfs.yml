@@ -55,53 +55,6 @@
     fstype: nfs
 
 
-#- name: mkdir /scratch/neuromics
-#  file:
-#    path: /scratch/neuromics
-#    state: directory
-#    owner: root
-#    group: sysadmin
-#    mode: 0755
-
-#- name: unmount /scratch/neuromics NFS volume 
-#  ansible.posix.mount:
-#    path: /scratch/neuromics
-#    state: unmounted
-#  ignore_errors: yes
-
-
-#- name: Mount /scratch/cromwell NFS volume 
-#  ansible.posix.mount:
-#    src: neuromics.blob.core.windows.net:/neuromics/scratch
-#    path: /scratch/neuromics
-#    opts: sec=sys,vers=3,nolock,proto=tcp
-#    state: mounted
-#    fstype: nfs
-
-
-#- name: mkdir /scratch/cromwell
-#  file:
-#    path: /scratch/cromwell
-#    state: directory
-#    owner: root
-#    group: sysadmin
-#    mode: 0755
-
-#- name: unmount /scratch/cromwell NFS volume 
-#  ansible.posix.mount:
-#    path: /scratch/cromwell
-#    state: unmounted
-#  ignore_errors: yes
-
-
-#- name: Mount /scratch/cromwell NFS volume 
-#  ansible.posix.mount:
-#    src: homesfileshare.file.core.windows.net:/homesfileshare/cromwell
-#    path: /scratch/cromwell
-#    opts: vers=4,minorversion=1,sec=sys
-#    state: mounted
-#    fstype: nfs
-
 - name: mkdir /refs
   file:
     path: /refs

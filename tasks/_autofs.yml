@@ -16,13 +16,6 @@
         src: templates/autofs/auto.project.j2
         dest: /etc/auto.{{group_name}}
 
-    - name: mkdir /data/{{group_name}}/ directory
-      ansible.builtin.file:
-        dest: /data/{{group_name}}
-        owner: root
-        mode: 0755
-        state: directory
-
     - name: write mountpoints to /data/{{group['key']}}.projects
       template:
         src: templates/autofs/README.j2
