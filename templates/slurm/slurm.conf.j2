@@ -20,7 +20,7 @@ StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
 # dummy holder for the initial bootstraping
-NodeName={{ groups['slurmnode'][0] }}  CoresPerSocket=1 CPUs=1 RealMemory=2653 Sockets=1  ThreadsPerCore=1  state=UNKNOWN
+NodeName={{ groups['slurmnode'][0]|default('ecc-node-dummy') }}  CoresPerSocket=1 CPUs=1 RealMemory=2653 Sockets=1  ThreadsPerCore=1  state=UNKNOWN
 
 
 # SMALL

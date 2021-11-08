@@ -1,0 +1,5 @@
+{% for item in storage  %}
+{{item}} -sec=sys,vers=3,nolock,proto=tcp {{item}}.blob.core.windows.net:/{{item}}/scratch
+{% endfor %}
+
+cromwell -vers=4,minorversion=1,sec=sys homesfileshare.file.core.windows.net:/homesfileshare/cromwell

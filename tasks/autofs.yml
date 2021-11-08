@@ -13,12 +13,23 @@
     group: root
 
 
-- name: configure autofs
+- name: mkdir /scratch
+  file:
+    path: /scratch
+    state: directory
+    owner: root
+    group: root
+
+
+- name: configure group autofs 
   include: tasks/_autofs.yml
   loop: "{{ storage | dict2items }}"
   loop_control:
     loop_var: group
 
+
+- name: configure scratch autofs 
+  include: tasks/_scratch_autofs.yml
 
 
 - name: restart autofs
