@@ -2,9 +2,6 @@
 
   block:
 
-    - name: set group_name
-      set_fact:
-        group_name: "{{group['key']}}"
 
     - name: write /etc/auto.master.d/scratch.autofs file
       template:
@@ -16,7 +13,7 @@
         src: templates/autofs/auto.scratch.j2
         dest: /etc/auto.scratch
 
-    - name: mkdir /scratch/{{group['key']}}/ directory
+    - name: mkdir /scratch/groups/ directory
       ansible.builtin.file:
         dest: /data/{{group['key']}}
         owner: root
