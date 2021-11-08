@@ -94,15 +94,13 @@
   ignore_errors: yes
 
 
-- name: Mount /scratch/neuromics NFS volume 
+- name: Mount /scratch/cromwell NFS volume 
   ansible.posix.mount:
     src: homesfileshare.file.core.windows.net:/homesfileshare/cromwell
     path: /scratch/neuromics
     opts: vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
-
-
 
 
 
