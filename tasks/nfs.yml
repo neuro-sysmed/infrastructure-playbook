@@ -17,6 +17,7 @@
   ansible.posix.mount:
     path: /usr/local
     state: unmounted
+  ignore_errors: yes
 
 
 
