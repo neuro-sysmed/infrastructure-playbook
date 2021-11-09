@@ -55,9 +55,9 @@
     fstype: nfs
 
 
-- name: mkdir /refs
+- name: mkdir /data/refs
   file:
-    path: /refs
+    path: /data/refs
     state: directory
     owner: root
     group: sysadmin
@@ -65,15 +65,15 @@
 
 - name: unmount /refs NFS volume 
   ansible.posix.mount:
-    path: /refs
+    path: /data/refs
     state: unmounted
   ignore_errors: yes
 
 
-- name: Mount /refs NFS volume 
+- name: Mount /data/refs NFS volume 
   ansible.posix.mount:
     src: systemfileshare.blob.core.windows.net:/systemfileshare/refs
-    path: /refs
+    path: /data/refs
     opts: sec=sys,vers=3,nolock,proto=tcp
     state: mounted
     fstype: nfs
