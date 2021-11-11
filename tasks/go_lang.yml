@@ -3,8 +3,6 @@
   block:
 
 
-
-
     - name: check if go executable is present
       shell: "which /usr/local/go/bin/go"
       register: go_bin

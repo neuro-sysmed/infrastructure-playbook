@@ -11,3 +11,7 @@
     - name: Install go
       include_tasks:
         file: tasks/go_lang.yml
+
+    - name: Install singularity
+      include_tasks:
+        file: tasks/singularity.yml

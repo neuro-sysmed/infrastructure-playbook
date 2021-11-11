@@ -1,0 +1,36 @@
+---
+- name: install singularity
+
+  block:
+
+    - name: check if singularity executable is present
+      shell: "which /usr/local/bin/singularity"
+      register: singularity_bin
+      ignore_errors: true
+
+    - name: install singularity build dependency packages
+      package:
+        name: 
+        - build-essential
+        - uuid-dev 
+        - libgpgme-dev
+        - squashfs-tools
+        - libseccomp-dev
+        - wget
+        - pkg-config
+        - git
+        - cryptsetup-bin
+
+    - name: get singularity repo
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/singularity.tgz https://github.com/sylabs/singularity/releases/download/v3.8.4/singularity-ce-3.8.4.tar.gz
+        mkdir /tmp/singularity
+        tar zxvf /tmp/singularity.tgz --strip 1 -C /tmp/singularity
+        cd /tmp/singularity
+        ./mconfig 
+        make -C ./builddir
+        make -C ./builddir install
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin/"
+      when: singularity_bin.rc != 0
+    
