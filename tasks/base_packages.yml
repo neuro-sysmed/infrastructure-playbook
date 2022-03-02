@@ -42,3 +42,11 @@
         file: microsoft_packages.yml
 
 
+    # Mainly packages that run auto updating
+    - name: Remove packages
+      package:
+        name:
+        - unattended-upgrades
+        - apt-config-auto-update
+        - apt-listchanges
+      state: absent
