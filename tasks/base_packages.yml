@@ -43,7 +43,7 @@
 
 
     # Mainly packages that run auto updating
-    - name: Remove packages
+    - name: Remove base packages
       package:
         name:
         - unattended-upgrades
