@@ -119,7 +119,7 @@ telegraf_plugins_default:
 storage:
   neuromics:
   - ppmi
-  - natpark
+  - nadpark
   - parkome1
   - parkome2
   - polg
