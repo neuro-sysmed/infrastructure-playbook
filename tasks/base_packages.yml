@@ -49,4 +49,4 @@
         - unattended-upgrades
         - apt-config-auto-update
         - apt-listchanges
-      state: absent
+        state: absent
