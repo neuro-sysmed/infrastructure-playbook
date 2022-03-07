@@ -20,7 +20,6 @@
   ignore_errors: yes
 
 
-
 - name: Mount /usr/local NFS volume 
   ansible.posix.mount:
     src: systemfileshare.blob.core.windows.net:/systemfileshare/local
@@ -30,26 +29,16 @@
     fstype: nfs
   ignore_errors: yes
 
-
-- name: mkdir /home/nfs/
-  file:
-    path: /home/nfs/
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-
 - name: unmount /home/nfs NFS volume 
   ansible.posix.mount:
-    path: /home/nfs
+    path: /home/
     state: unmounted
   ignore_errors: yes
-
 
 - name: Mount /home NFS volume 
   ansible.posix.mount:
     src: homesfileshare.file.core.windows.net:/homesfileshare/home1
-    path: /home/nfs/
+    path: /home/
     opts: vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
