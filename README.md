@@ -12,6 +12,9 @@ sudo apt-get update
 sudo apt-get upgrade -y 
 sudo apt-get  install python3-venv python3-pip -y
 
+# tmp playbook, another will be installed in /usr/local/ in one of the next steps
+cd /tmp
+
 git clone https://github.com/neuro-sysmed/infrastructure-playbook
 cd infrastructure-playbook
 python3 -m venv venv
@@ -25,10 +28,14 @@ ansible-galaxy collection install -p roles -r requirements.yml
 
 ansible-playbook ecc.yml
 
-ln -s   /usr/local/etc/ecc_utv.yml /usr/local/etc/ecc.yml
+ln -s   /usr/local/etc/ecc_prod.yml /usr/local/etc/ecc.yml
 
 # to be able to use ecc azure-cli needs to be availabe:
 az login
+
+#run ecc
+
+eccd -v 
 
 ```
 
