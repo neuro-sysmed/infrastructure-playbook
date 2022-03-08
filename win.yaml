@@ -1,0 +1,22 @@
+- hosts: windows
+
+  tasks:
+
+    - name: Create local group to contain new users
+      win_group:
+        name: Neuromics
+        description: The neuromics research group
+
+
+    - name: Create local user
+      win_user:
+        name: '{{ item.name }}'
+        password: '{{ item.password }}'
+        groups: Neuromics
+        update_password: no
+        password_never_expires: yes
+      loop:
+      - name: User1
+        password: Password1
+      - name: User2
+        password: Password2
