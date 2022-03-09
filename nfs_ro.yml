@@ -6,14 +6,6 @@
 
   vars_files:
    - group_vars/system.yml
-   - secret_group_vars/system.vault    
-
-
-  roles:
-    - geerlingguy.mysql
-    - geerlingguy.java
-    - dj-wasabi.telegraf
-
 
   tasks:
     # need to mount /usr/local before adding stuff to it.

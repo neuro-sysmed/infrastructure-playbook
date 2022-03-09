@@ -109,3 +109,9 @@ module load StdEnv # default for all users
 
 
 ```
+
+## Prod hardinging of setup
+
+Only the nsm server will have read-write access to the shared nfs partitions, however just to make sure nothing bad happends:
+
+ /usr/local/lib/infrastructure-playbook/venv/bin/ansible-playbook /usr/local/lib/infrastructure-playbook/nfs_ro.yml
