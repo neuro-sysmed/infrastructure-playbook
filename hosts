@@ -11,5 +11,7 @@ ecc-node-ubuntu ansible_user=sysadmin
 [projectvm]
 project ansible_user=sysadmin
  
+[windows]
+neuromics-win ansible_user=sysadmin
 
 

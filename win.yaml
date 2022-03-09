@@ -1,0 +1,52 @@
+- hosts: windows
+
+  tasks:
+
+#    - name: create groups & users
+# Enable/install a nfsclient
+# Configure nfsclient to use uid mapping to windows users.
+
+    - name: Install software via Chocolatey (community.chocolatey.org)
+      win_chocolatey:
+        name: 
+        - mobaxterm
+        - putty
+        state: present
+
+
+
+    - name: Create local group to contain new users
+      win_group:
+        name: Neuromics
+        description: The neuromics research group
+
+
+    
+
+      https://download.mobatek.net/2202022022680737/MobaXterm_Installer_v22.0.zip
+
+
+
+    - name: Create local user
+      win_user:
+        name: '{{ item.name }}'
+        password: '{{ item.password }}'
+        groups: Neuromics
+        update_password: no
+        password_never_expires: yes
+      loop:
+      - name: User1
+        password: Password1
+      - name: User2
+        password: Password2
+
+    - name: deploy user-list for nfs
+      ansible.windows.win_template:
+       src: templates/windows/passwd.j2
+       dest: C:\windows\system32\drivers\etc\passwd
+       
+    
+    - name: deploy user-list for nfs
+      ansible.windows.win_template:
+       src: templates/windows/group.j2
+       dest: C:\windows\system32\drivers\etc\group

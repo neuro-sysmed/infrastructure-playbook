@@ -3,3 +3,4 @@ ansible
 PyMySQL
 requests
 influxdb
+pywinrm
