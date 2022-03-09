@@ -27,14 +27,6 @@ system_users:
       group_names: ["neuromics", 'wheel', 'admin'],
     }
   - {
-      name: melanie,
-      uid: 1011,
-      group: nsm,
-      shell: /bin/bash,
-      create_home: yes,
-      group_names: ["data", 'admin'],
-    }
-  - {
       name: gon,
       uid: 1012,
       group: neuromics,
