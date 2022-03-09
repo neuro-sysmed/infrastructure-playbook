@@ -5,6 +5,7 @@
     name:
       - nfs-common
 
+
 - name: mkdir /usr/local
   file:
     path: /usr/local
@@ -12,6 +13,7 @@
     owner: root
     group: sysadmin
     mode: 0755
+
 
 - name: unmount /usr/local NFS volume 
   ansible.posix.mount:
@@ -29,11 +31,13 @@
     fstype: nfs
   ignore_errors: yes
 
+
 - name: unmount /home/nfs NFS volume 
   ansible.posix.mount:
     path: /home/
     state: unmounted
   ignore_errors: yes
+
 
 - name: Mount /home NFS volume 
   ansible.posix.mount:
@@ -51,6 +55,7 @@
     owner: root
     group: sysadmin
     mode: 0755
+
 
 - name: unmount /refs NFS volume 
   ansible.posix.mount:
