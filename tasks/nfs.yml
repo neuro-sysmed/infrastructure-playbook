@@ -26,11 +26,10 @@
   ansible.posix.mount:
     src: systemfileshare.blob.core.windows.net:/systemfileshare/local
     path: /usr/local
-    opts: sec=sys,vers=3,nolock,proto=tcp
+    opts: sec=sys,vers=3,nolock,proto=tcp,{nfs_perm|default("ro")}
     state: mounted
     fstype: nfs
   ignore_errors: yes
-
 
 - name: unmount /home/nfs NFS volume 
   ansible.posix.mount:
@@ -57,7 +56,7 @@
     mode: 0755
 
 
-- name: unmount /refs NFS volume 
+- name: unmount /data/refs NFS volume 
   ansible.posix.mount:
     path: /data/refs
     state: unmounted
@@ -68,6 +67,6 @@
   ansible.posix.mount:
     src: systemfileshare.blob.core.windows.net:/systemfileshare/refs
     path: /data/refs
-    opts: sec=sys,vers=3,nolock,proto=tcp
+    opts: sec=sys,vers=3,nolock,proto=tcp,{nfs_perm|default("ro")}
     state: mounted
     fstype: nfs

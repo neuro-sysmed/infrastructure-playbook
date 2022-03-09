@@ -14,6 +14,9 @@
     - geerlingguy.java
     - dj-wasabi.telegraf
 
+  vars:
+    nfs_perm: rw
+
 
   tasks:
     # need to mount /usr/local before adding stuff to it.
@@ -28,7 +31,6 @@
     - name: Install packages
       include: tasks/base_packages.yml
       tags: 'base_packages'
-
 
     - name: Install packages
       include: tasks/non_base_software.yml
